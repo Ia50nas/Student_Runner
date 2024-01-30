@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" source="Town_Map.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt0FOzZWcUhtHd55y2bdu2EdtmI92xnXRs27ZtOzlt27aNjH+wal3sqm+t2hfjYt7MeuotzMtkxjCWcYxnAhOZxGSmMJVpTGcGM5nFbOYwl3nMZwELWcRilrCUZSxnBStZxWrWUJiFjqT8DGWvUDri/kzzFlEda1nHejawkU1sZgtb2cZ2drCTXexmD3vZx34y+ZlMEfLIp4CiFKM4JShJKUpThrKUy89OR1J+hrJXKB1xf6Z5i6iO8lSgIpWoTBWqUo3q1KAmtahNHepSj/o0oCGNaEwTmtKM5rSgJa1oTRva0o72dMhSR1J+hrJXKB1xf6Z5i6iOjnSiM13oSje604Oe9KI3fehLP/ozgIEMYjBDOIADOYiDOYRDOYzDOYIjOYqjOYZjs9SRlJ+h7BVKR9yfad4iquM4jucETuQkTuYUTuU0TucMzuQszuYczmUowxjOCM5jJKM4nwu4kIu4mEu4lMu4nCu4MksdSfkZyl6hdMT9meYtojqu4mqu4Vqu43pu4EZu4mZGcwu3chu3cwd3chd3cw/3ch/38wAP8hAP8wiP8hiP8wRP8lSWOpLyM5S9QumI+zPNW0R1PM0zPMtzPM8LvMhLvMwrvMprvM4bvMlbvM07vMt7vM8HfMhHfMwnfMpnfM4XfMlXfM03WepIys9Q9gqlI+7PNG8R1fEt3/E9P/AjP/Ezv/Arv/E7f/Anf/E3//Av/1HIGMYyjvFMYCKTmMwUpjKN6cxgJrOy1JGUn6HsFUpH3J9p3iKqYzZzmMs85rOAhSxiMUtYyjKWs4KVrGI1a1jLOtazgY1sYjNb2Mo2trODnexiN3uy1JGUn6HsFUpH3J9p3iKqYy/72E+mIJMpQh75FFCUYhSnBCUpRWnKUJZylKcCFalEZapQlWpUpwY1qUVt6lCXegXZ6UjKz1D2CqUj7s80bxHVUZ8GNKQRjWlCU5rRnBa0pBWtaUNb2tGeDnSkE53pQle60Z0e9KQXvelDX/rRnwFZ6kjKz1D2CqUj7s80bxHVMZBBDGZI7s7duTtR91CGMZwRuTt35+5E3f8D26DY0w==
+  </data>
+ </layer>
+</map>

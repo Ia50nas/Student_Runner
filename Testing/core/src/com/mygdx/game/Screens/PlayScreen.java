@@ -33,7 +33,7 @@ public class PlayScreen implements Screen{
         hud = new Hud(game.batch);
 
         maploader = new TmxMapLoader();
-        map = maploader.load("untitled.tmx");
+        map = maploader.load("Town.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         gamecam.position.set(gameport.getWorldWidth()/2, gameport.getWorldHeight()/2,0);
     }
