@@ -29,7 +29,7 @@ public class PlayScreen implements Screen{
     public PlayScreen(RunnerGame game){
         this.game = game;
         gamecam = new OrthographicCamera();
-        gameport = new FitViewport(16 * 100,16 * 50, gamecam);
+        gameport = new FitViewport(16 * 100,16 * 51, gamecam);
         hud = new Hud(game.batch);
 
         maploader = new TmxMapLoader();
