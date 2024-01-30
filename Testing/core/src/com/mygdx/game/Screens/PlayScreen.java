@@ -29,11 +29,11 @@ public class PlayScreen implements Screen{
     public PlayScreen(RunnerGame game){
         this.game = game;
         gamecam = new OrthographicCamera();
-        gameport = new FitViewport(16 * 30,16 * 17, gamecam);
+        gameport = new FitViewport(16 * 100,16 * 50, gamecam);
         hud = new Hud(game.batch);
 
         maploader = new TmxMapLoader();
-        map = maploader.load("Town.tmx");
+        map = maploader.load("Town2.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         gamecam.position.set(gameport.getWorldWidth()/2, gameport.getWorldHeight()/2,0);
     }
