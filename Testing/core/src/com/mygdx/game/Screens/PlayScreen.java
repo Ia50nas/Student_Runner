@@ -1,5 +1,6 @@
 package com.mygdx.game.Screens;
 
+import Sprites.Runner;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -50,6 +51,7 @@ public class PlayScreen implements Screen{
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
         Body body;
+        new Runner(world);
 
         //create ground body
         for(MapObject object : map.getLayers().get(1).getObjects().getByType(RectangleMapObject.class)) {
@@ -85,12 +87,16 @@ public class PlayScreen implements Screen{
         update(delta);
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);           //clear screen
+
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+
         renderer.render();
 
         //render box2d
         b2dr.render(world, gamecam.combined);
+
         //set to draw
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+
         hud.stage.draw();
 
     }

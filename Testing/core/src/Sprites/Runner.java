@@ -15,7 +15,7 @@ public class Runner extends Sprite {
     public  void defineRunner(){
         BodyDef bdef = new BodyDef();
         bdef.position.set(32 / RunnerGame.PPM, 32 / RunnerGame.PPM);
-        bdef.type = BodyDef.BodyType.DynamicBody;
+        bdef.type = BodyDef.BodyType.StaticBody;
         b2body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
