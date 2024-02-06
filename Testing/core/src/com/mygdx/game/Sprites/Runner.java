@@ -1,4 +1,4 @@
-package Sprites;
+package com.mygdx.game.Sprites;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.physics.box2d.*;
@@ -15,7 +15,7 @@ public class Runner extends Sprite {
     public  void defineRunner(){
         BodyDef bdef = new BodyDef();
         bdef.position.set(32 / RunnerGame.PPM, 32 / RunnerGame.PPM);
-        bdef.type = BodyDef.BodyType.StaticBody;
+        bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
