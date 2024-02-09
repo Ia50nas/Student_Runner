@@ -1,5 +1,6 @@
 package com.mygdx.game.Screens;
 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.Sprites.Runner;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -23,6 +24,7 @@ import com.mygdx.game.Tools.B2WorldCreator;
 
 public class PlayScreen implements Screen{
     private RunnerGame game;
+    private TextureAtlas atlas;
     Texture texture;
     private OrthographicCamera gamecam;
     private Viewport gameport;
@@ -37,6 +39,7 @@ public class PlayScreen implements Screen{
     private Box2DDebugRenderer b2dr;
     private Runner player;
     public PlayScreen(RunnerGame game){
+        atlas = new TextureAtlas("Runner.pack");
         this.game = game;
         gamecam = new OrthographicCamera();
         gameport = new FitViewport(16 * 100/ RunnerGame.PPM,16 * 51 / RunnerGame.PPM, gamecam);
@@ -49,10 +52,12 @@ public class PlayScreen implements Screen{
         world = new World(new Vector2(0,-10),true);
         b2dr = new Box2DDebugRenderer();
         new B2WorldCreator(world,map);
-        player = new Runner(world);
+        player = new Runner(world,this);
 
         }
-
+    public TextureAtlas getAtlas(){
+        return  atlas;
+    }
     @Override
     public void show() {
 
@@ -68,6 +73,7 @@ public class PlayScreen implements Screen{
     public void update(float dt){
         handleInput(dt);
         world.step(1/60f,6,2);
+        player.update(dt);
         gamecam.position.x = player.b2body.getPosition().x;
         gamecam.update();
         renderer.setView(gamecam);
@@ -75,13 +81,24 @@ public class PlayScreen implements Screen{
     }
     @Override
     public void render(float delta) {
+        //clear game screen
         update(delta);
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);           //clear screen
+
+        //render map
         renderer.render();
 
         //render box2d
         b2dr.render(world, gamecam.combined);
+
+        //player
+        game.batch.setProjectionMatrix(gamecam.combined);
+
+        game.batch.begin();
+        player.draw(game.batch);
+        game.batch.end();
+
         //set to draw
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
