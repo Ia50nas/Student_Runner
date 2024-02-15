@@ -1,6 +1,7 @@
 package com.mygdx.game.Tools;
 
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
@@ -19,14 +20,19 @@ public class B2WorldCreator {
         Body body;
 
         //create brick body
-        for (MapObject object : map.getLayers().get(1).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new Brick(world,map,rect);
         }
+        //create cone body
+        for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
+            new Coin(world,map,rect);
+        }
         //create coin body
-        for (MapObject object : map.getLayers().get(1).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new Coin(world,map,rect);

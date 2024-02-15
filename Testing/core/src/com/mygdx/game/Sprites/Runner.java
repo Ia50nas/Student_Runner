@@ -30,7 +30,7 @@ public class Runner extends Sprite {
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(5 / RunnerGame.PPM);
+        shape.setRadius(10 / RunnerGame.PPM);
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
