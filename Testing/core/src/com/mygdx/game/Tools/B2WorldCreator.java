@@ -31,6 +31,13 @@ public class B2WorldCreator {
 
             new Coin(world,map,rect);
         }
+        //create Boundaries body
+        for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Coin(world,map,rect);
+        }
+
         //create coin body
         for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
