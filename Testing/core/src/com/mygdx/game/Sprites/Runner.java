@@ -40,7 +40,11 @@ public class Runner extends Sprite {
         RunnerJump = new Animation(0.1f, frames);
 
         defineRunner();
-        RunnerStand = new TextureRegion(getTexture(), 87, 16, 17, 17);
+
+
+        frames.add(new TextureRegion(getTexture(), 163, 24, 16,17));
+        RunnerStand = new TextureRegion(getTexture(), 163, 24, 17, 17);
+
         setBounds(0,0,48/RunnerGame.PPM,48/RunnerGame.PPM);
         setRegion(RunnerStand);
     }
@@ -57,10 +61,10 @@ public class Runner extends Sprite {
             case JUMPING:
                 region = (TextureRegion) RunnerJump.getKeyFrame(stateTimer);
                 break;
+            case FALLING:
             case RUNNING:
                 region = (TextureRegion) RunnerRun.getKeyFrame(stateTimer, true);
                 break;
-            case FALLING:
             case STANDING:
                 region = RunnerStand;
                 break;
