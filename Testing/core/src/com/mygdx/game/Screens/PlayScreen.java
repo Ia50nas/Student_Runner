@@ -21,6 +21,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.RunnerGame;
 import com.mygdx.game.Scenes.Hud;
 import com.mygdx.game.Tools.B2WorldCreator;
+import com.mygdx.game.Tools.WorldContactListener;
 
 public class PlayScreen implements Screen{
     private RunnerGame game;
@@ -54,6 +55,8 @@ public class PlayScreen implements Screen{
         new B2WorldCreator(world,map);
         player = new Runner(world,this);
 
+        world.setContactListener(new WorldContactListener());
+
         }
     public TextureAtlas getAtlas(){
         return  atlas;
@@ -77,7 +80,6 @@ public class PlayScreen implements Screen{
         gamecam.position.x = player.b2body.getPosition().x;
         gamecam.update();
         renderer.setView(gamecam);
-        System.out.println(player.b2body.getPosition());
     }
     @Override
     public void render(float delta) {

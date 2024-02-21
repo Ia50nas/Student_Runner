@@ -3,6 +3,7 @@ package com.mygdx.game.Sprites;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.RunnerGame;
@@ -109,5 +110,12 @@ public class Runner extends Sprite {
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
+
+        EdgeShape head = new EdgeShape();
+        head.set(new Vector2(-2/RunnerGame.PPM,7/RunnerGame.PPM), new Vector2(7/RunnerGame.PPM,5/RunnerGame.PPM));
+        fdef.shape = head;
+        fdef.isSensor = true;
+
+        b2body.createFixture(fdef).setUserData("head");
     }
 }
