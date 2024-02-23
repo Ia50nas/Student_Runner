@@ -7,59 +7,64 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.RunnerGame;
+import com.mygdx.game.Screens.PlayScreen;
 import com.mygdx.game.Sprites.Brick;
-import com.mygdx.game.Sprites.Coin;
+import com.mygdx.game.Sprites.CourseWork;
 import com.mygdx.game.Sprites.Runner;
 
+import java.util.LinkedList;
+
 public class B2WorldCreator {
-    public B2WorldCreator(World world, TiledMap map) {
+
+    private final PlayScreen playScreen;
+    public B2WorldCreator(World world, TiledMap map, LinkedList<CourseWork> courseworks, PlayScreen playScreen) {
         //create body
         BodyDef bdef = new BodyDef();
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
         Body body;
+        this.playScreen = playScreen;
 
         //create cone body
-        for (MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new Brick(world,map,rect);
         }
         //create Ground body
-        for (MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new Brick(world,map,rect);
         }
         //create Boundaries body
-        for (MapObject object : map.getLayers().get(9).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new Brick(world,map,rect);
         }
         //create car Bodies
-        for (MapObject object : map.getLayers().get(10).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(9).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new Brick(world,map,rect);
         }
         //create wall Bodies
-        for (MapObject object : map.getLayers().get(11).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(10).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new Brick(world,map,rect);
         }
         //create fire Bodies
-        for (MapObject object : map.getLayers().get(12).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(11).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new Brick(world,map,rect);
         }
-        //create coin body
-        for (MapObject object : map.getLayers().get(13).getObjects().getByType(RectangleMapObject.class)) {
+        //create coursework body
+        for (MapObject object : map.getLayers().get(12).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            new Coin(world,map,rect);
+            courseworks.add(new CourseWork(world,map,rect, playScreen));
         }
     }
 }

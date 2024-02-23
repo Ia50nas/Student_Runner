@@ -20,17 +20,17 @@ public class Hud implements Disposable {
     private Viewport viewport;
     private Integer worldTimer;
     private float timeCount;
-    private Integer score;
+    private static Integer score;
 
     Label countdownLabel;
-    Label scoreLabel;
+    static Label scoreLabel;
     Label timeLabel;
     Label levelLabel;
     Label worldLabel;
     Label RunnerLabel;
 
     public  Hud(SpriteBatch sb){
-        worldTimer = 300;
+        worldTimer = 120;
         timeCount = 0;
         score = 0;
 
@@ -60,6 +60,19 @@ public class Hud implements Disposable {
 
     }
 
+    public  void update(float dt){
+        timeCount += dt;
+        if(timeCount >= 1){
+            worldTimer--;
+            countdownLabel.setText(String.format("%03d", worldTimer));
+            timeCount = 0;
+        }
+    }
+
+    public static void addScore(int value){
+        score+=value;
+        scoreLabel.setText(String.format("%06d", score));
+    }
 
     @Override
     public void dispose() {

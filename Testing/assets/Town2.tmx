@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="425" height="34" tilewidth="16" tileheight="16" infinite="0" nextlayerid="21" nextobjectid="76">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="425" height="34" tilewidth="16" tileheight="16" infinite="0" nextlayerid="22" nextobjectid="78">
  <tileset firstgid="1" source="Town_Map.tsx"/>
  <tileset firstgid="1157" source="air_map.tsx"/>
  <tileset firstgid="2313" source="Cone.tsx"/>
@@ -41,11 +41,6 @@
  <layer id="4" name="Cone" width="425" height="34">
   <data encoding="base64" compression="zlib">
    eJzt1CkOACAQA8C1y/H/74IhfAAEZMY0qahsBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC8p2REzZ2nd2/1APyvzf/vufP07q0eAAAAAJYBnh4B7Q==
-  </data>
- </layer>
- <layer id="19" name="Courseworks" width="425" height="34">
-  <data encoding="base64" compression="zlib">
-   eJzt2UENACAMBMFKwL+3ekECST8tMKPgvpeNAAAAAAAAAAAAAAAAAAAAAAAAAABgmlzdCwAAAAAAALiV1gQAAAAAAECV1gQAAAAAAECV1gQAAAAAAPAO7QcAAPiF/wMAAAAAAHC2AdYcBY8=
   </data>
  </layer>
  <objectgroup id="5" name="Cone">

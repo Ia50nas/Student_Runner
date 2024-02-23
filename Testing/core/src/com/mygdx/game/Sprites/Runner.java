@@ -106,7 +106,9 @@ public class Runner extends Sprite {
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(10 / RunnerGame.PPM);
+        shape.setRadius(6 / RunnerGame.PPM);
+        fdef.filter.categoryBits = RunnerGame.RUNNER_BIT;
+        fdef.filter.maskBits = RunnerGame.DEFAULT_BIT | RunnerGame.COURSEWORK_BIT | RunnerGame.BRICK_BIT;
 
         fdef.shape = shape;
         b2body.createFixture(fdef);

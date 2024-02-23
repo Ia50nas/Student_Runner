@@ -1,6 +1,8 @@
 package com.mygdx.game.Screens;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.mygdx.game.Sprites.CourseWork;
 import com.mygdx.game.Sprites.Runner;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -23,6 +25,8 @@ import com.mygdx.game.Scenes.Hud;
 import com.mygdx.game.Tools.B2WorldCreator;
 import com.mygdx.game.Tools.WorldContactListener;
 
+import java.util.LinkedList;
+
 public class PlayScreen implements Screen{
     private RunnerGame game;
     private TextureAtlas atlas;
@@ -39,6 +43,8 @@ public class PlayScreen implements Screen{
     private World world;
     private Box2DDebugRenderer b2dr;
     private Runner player;
+
+    private LinkedList<CourseWork> courseWorks;
     public PlayScreen(RunnerGame game){
         atlas = new TextureAtlas("Runner.pack");
         this.game = game;
@@ -46,13 +52,15 @@ public class PlayScreen implements Screen{
         gameport = new FitViewport(16 * 100/ RunnerGame.PPM,16 * 51 / RunnerGame.PPM, gamecam);
         hud = new Hud(game.batch);
 
+        courseWorks = new LinkedList<>();
+
         maploader = new TmxMapLoader();
         map = maploader.load("Town2.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1/RunnerGame.PPM);
         gamecam.position.set(gameport.getWorldWidth()/2, gameport.getWorldHeight()/2,0);
         world = new World(new Vector2(0,-10),true);
         b2dr = new Box2DDebugRenderer();
-        new B2WorldCreator(world,map);
+        new B2WorldCreator(world,map, courseWorks, this);
         player = new Runner(world,this);
 
         world.setContactListener(new WorldContactListener());
@@ -77,6 +85,7 @@ public class PlayScreen implements Screen{
         handleInput(dt);
         world.step(1/60f,6,2);
         player.update(dt);
+        hud.update(dt);
         gamecam.position.x = player.b2body.getPosition().x;
         gamecam.update();
         renderer.setView(gamecam);
@@ -101,10 +110,18 @@ public class PlayScreen implements Screen{
         player.draw(game.batch);
         game.batch.end();
 
+        for (CourseWork courseWork : courseWorks) {
+            courseWork.render(game.batch);
+        }
+
         //set to draw
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
+    }
+
+    public void removeCourseWork(CourseWork courseWork) {
+        courseWorks.remove(courseWork);
     }
 
     @Override
