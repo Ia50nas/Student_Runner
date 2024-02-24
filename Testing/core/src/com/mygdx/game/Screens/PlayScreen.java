@@ -1,5 +1,6 @@
 package com.mygdx.game.Screens;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.Sprites.CourseWork;
@@ -45,6 +46,7 @@ public class PlayScreen implements Screen{
     private Runner player;
 
     private LinkedList<CourseWork> courseWorks;
+    private Music music;
     public PlayScreen(RunnerGame game){
         atlas = new TextureAtlas("Runner.pack");
         this.game = game;
@@ -64,7 +66,9 @@ public class PlayScreen implements Screen{
         player = new Runner(world,this);
 
         world.setContactListener(new WorldContactListener());
-
+        music = RunnerGame.manager.get("audio/music/Runner_Game_Music.wav");
+        music.setLooping(true);
+        music.play();
         }
     public TextureAtlas getAtlas(){
         return  atlas;
@@ -75,11 +79,11 @@ public class PlayScreen implements Screen{
     }
     public void handleInput(float dt){
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP))
-            player.b2body.applyLinearImpulse(new Vector2(0,4f), player.b2body.getWorldCenter(), true);
+            player.b2body.applyLinearImpulse(new Vector2(0,5f), player.b2body.getWorldCenter(), true);
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
-            player.b2body.applyLinearImpulse(new Vector2(0.05f,0), player.b2body.getWorldCenter(),true);
+            player.b2body.applyLinearImpulse(new Vector2(0.1f,0), player.b2body.getWorldCenter(),true);
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
-            player.b2body.applyLinearImpulse(new Vector2(-0.05f,0), player.b2body.getWorldCenter(),true);
+            player.b2body.applyLinearImpulse(new Vector2(-0.1f,0), player.b2body.getWorldCenter(),true);
     }
     public void update(float dt){
         handleInput(dt);

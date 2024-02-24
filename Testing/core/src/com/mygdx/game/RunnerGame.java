@@ -2,6 +2,9 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -18,10 +21,25 @@ public class RunnerGame extends Game {
 	public static final short DESTROYED_BIT = 16;
 	public SpriteBatch batch;
 
+	public static AssetManager manager;
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
+
+		manager = new AssetManager();
+		manager.load("audio/music/Runner_Game_Music.wav" , Music.class);
+		manager.load("audio/sounds/coin.wav" , Sound.class);
+		manager.load("audio/sounds/bump.wav" , Sound.class);
+		manager.load("audio/sounds/breakblock.wav" , Sound.class);
+		manager.finishLoading();
 		setScreen(new PlayScreen(this));
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		manager.dispose();
+		batch.dispose();
 	}
 
 	@Override

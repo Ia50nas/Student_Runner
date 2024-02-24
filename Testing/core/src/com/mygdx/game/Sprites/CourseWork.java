@@ -1,6 +1,7 @@
 package com.mygdx.game.Sprites;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -45,7 +46,8 @@ public class CourseWork extends InteractiveTileObject{
         Gdx.app.log("Coursework", "Collision");
         setCategoryFilter(RunnerGame.DESTROYED_BIT);
         playScreen.removeCourseWork(this);
-
+        Hud.addScore(10);
+        RunnerGame.manager.get("audio/sounds/breakblock.wav", Sound.class).play();
     }
 
 }
