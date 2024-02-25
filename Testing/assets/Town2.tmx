@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="425" height="65" tilewidth="16" tileheight="16" infinite="0" nextlayerid="22" nextobjectid="124">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="425" height="65" tilewidth="16" tileheight="16" infinite="0" nextlayerid="22" nextobjectid="131">
  <tileset firstgid="1" source="Town_Map.tsx"/>
  <tileset firstgid="1157" source="air_map.tsx"/>
  <tileset firstgid="2313" source="Cone.tsx"/>
@@ -120,5 +120,12 @@
   <object id="75" x="1552" y="431.333" width="32.6667" height="31.3333"/>
   <object id="85" x="2777.67" y="441.667" width="32.6667" height="32.6667"/>
   <object id="86" x="2932.67" y="447.667" width="32.6667" height="32.6667"/>
+  <object id="124" x="4198.33" y="341" width="32.6667" height="32.6667"/>
+  <object id="125" x="4773" y="450.333" width="32.6667" height="32.6667"/>
+  <object id="126" x="4937" y="446.333" width="32.6667" height="32.6667"/>
+  <object id="127" x="5566.33" y="438.333" width="32.6667" height="32.6667"/>
+  <object id="128" x="6707.67" y="302.333" width="32.6667" height="32.6667"/>
+  <object id="129" x="6325" y="455.667" width="32.6667" height="32.6667"/>
+  <object id="130" x="3422.33" y="398.333" width="32.6667" height="32.6667"/>
  </objectgroup>
 </map>
