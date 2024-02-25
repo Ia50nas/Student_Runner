@@ -28,7 +28,7 @@ import com.mygdx.game.Tools.WorldContactListener;
 
 import java.util.LinkedList;
 
-public class PlayScreen implements Screen{
+public class PlayScreen implements Screen {
     private RunnerGame game;
     private TextureAtlas atlas;
     Texture texture;
@@ -40,65 +40,82 @@ public class PlayScreen implements Screen{
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
 
-        //box2d variables
+    //box2d variables
     private World world;
     private Box2DDebugRenderer b2dr;
     private Runner player;
 
     private LinkedList<CourseWork> courseWorks;
     private Music music;
-    public PlayScreen(RunnerGame game){
+
+    public PlayScreen(RunnerGame game) {
         atlas = new TextureAtlas("Runner.pack");
         this.game = game;
         gamecam = new OrthographicCamera();
-        gameport = new FitViewport(16 * 100/ RunnerGame.PPM,16 * 51 / RunnerGame.PPM, gamecam);
+        gameport = new FitViewport(16 * 100 / RunnerGame.PPM, 16 * 51 / RunnerGame.PPM, gamecam);
         hud = new Hud(game.batch);
 
         courseWorks = new LinkedList<>();
-
+        //Load map
         maploader = new TmxMapLoader();
         map = maploader.load("Town2.tmx");
-        renderer = new OrthogonalTiledMapRenderer(map, 1/RunnerGame.PPM);
-        gamecam.position.set(gameport.getWorldWidth()/2, gameport.getWorldHeight()/2,0);
-        world = new World(new Vector2(0,-10),true);
+        renderer = new OrthogonalTiledMapRenderer(map, 1 / RunnerGame.PPM);
+
+        //Center camera at the start
+        gamecam.position.set(gameport.getWorldWidth() / 2, gameport.getWorldHeight() / 2, 0);
+
+        // create Box2D world
+        world = new World(new Vector2(0, -10), true);
         b2dr = new Box2DDebugRenderer();
-        new B2WorldCreator(world,map, courseWorks, this);
-        player = new Runner(world,this);
+
+
+        new B2WorldCreator(world, map, courseWorks, this);
+
+        //Create the player
+        player = new Runner(world, this);
 
         world.setContactListener(new WorldContactListener());
+
+        //Play in loop the main theme song of the game
         music = RunnerGame.manager.get("audio/music/Runner_Game_Music.wav");
         music.setLooping(true);
         music.play();
-        }
-    public TextureAtlas getAtlas(){
-        return  atlas;
     }
+
+    public TextureAtlas getAtlas() {
+        return atlas;
+    }
+
     @Override
     public void show() {
 
     }
-    public void handleInput(float dt){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP))
-            player.b2body.applyLinearImpulse(new Vector2(0,5f), player.b2body.getWorldCenter(), true);
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
-            player.b2body.applyLinearImpulse(new Vector2(0.1f,0), player.b2body.getWorldCenter(),true);
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
-            player.b2body.applyLinearImpulse(new Vector2(-0.1f,0), player.b2body.getWorldCenter(),true);
+
+    public void handleInput(float dt) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
+            player.b2body.applyLinearImpulse(new Vector2(0, 5f), player.b2body.getWorldCenter(), true);
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
+            player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
+            player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
     }
-    public void update(float dt){
+
+    public void update(float dt) {
         handleInput(dt);
-        world.step(1/60f,6,2);
+        world.step(1 / 60f, 6, 2);
         player.update(dt);
         hud.update(dt);
         gamecam.position.x = player.b2body.getPosition().x;
         gamecam.update();
         renderer.setView(gamecam);
+
     }
+
     @Override
     public void render(float delta) {
         //clear game screen
         update(delta);
-        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);           //clear screen
 
         //render map
@@ -133,6 +150,18 @@ public class PlayScreen implements Screen{
         gameport.update(width, height);
     }
 
+    public TiledMap getMap() {
+        return map;
+    }
+
+    public World getWorld() {
+        return world;
+    }
+    public Runner getPlayer() {
+        return player;
+    }
+
+
     @Override
     public void pause() {
 
@@ -156,4 +185,6 @@ public class PlayScreen implements Screen{
         b2dr.dispose();
         hud.dispose();
     }
+
 }
+

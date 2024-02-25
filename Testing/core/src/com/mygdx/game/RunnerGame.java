@@ -17,6 +17,7 @@ public class RunnerGame extends Game {
 	public  static final short DEFAULT_BIT = 1;
 	public  static final short RUNNER_BIT = 2;
 	public  static  final  short BRICK_BIT = 4;
+	public static final short FIRE_BIT = 4;
 	public  static  final  short COURSEWORK_BIT = 8;
 	public static final short DESTROYED_BIT = 16;
 	public SpriteBatch batch;
@@ -28,7 +29,7 @@ public class RunnerGame extends Game {
 
 		manager = new AssetManager();
 		manager.load("audio/music/Runner_Game_Music.wav" , Music.class);
-		manager.load("audio/sounds/coin.wav" , Sound.class);
+		manager.load("audio/sounds/Coursework.wav" , Sound.class);
 		manager.load("audio/sounds/bump.wav" , Sound.class);
 		manager.load("audio/sounds/breakblock.wav" , Sound.class);
 		manager.finishLoading();

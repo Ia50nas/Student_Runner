@@ -119,5 +119,20 @@ public class Runner extends Sprite {
         fdef.isSensor = true;
 
         b2body.createFixture(fdef).setUserData("head");
+
+        // Create a new fixture for the foot sensor
+        PolygonShape footSensor = new PolygonShape();
+        footSensor.setAsBox(5 / RunnerGame.PPM, 2 / RunnerGame.PPM, new Vector2(0, -6 / RunnerGame.PPM), 0);
+
+        FixtureDef footFixtureDef = new FixtureDef();
+        footFixtureDef.shape = footSensor;
+        footFixtureDef.isSensor = true; // Set the sensor flag to true
+
+        // Set the collision category and mask bits for the foot sensor fixture
+        footFixtureDef.filter.categoryBits = RunnerGame.RUNNER_BIT;
+        footFixtureDef.filter.maskBits = RunnerGame.DEFAULT_BIT | RunnerGame.COURSEWORK_BIT | RunnerGame.BRICK_BIT;
+
+        // Create the foot sensor fixture and attach it to the runner's body
+        b2body.createFixture(footFixtureDef).setUserData("foot");
     }
 }

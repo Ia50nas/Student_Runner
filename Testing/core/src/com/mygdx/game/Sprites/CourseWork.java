@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -18,6 +19,7 @@ import com.mygdx.game.Scenes.Hud;
 import com.mygdx.game.Screens.PlayScreen;
 
 public class CourseWork extends InteractiveTileObject{
+    private boolean needsTeleportation = false;
     private static TiledMapTileSet set;
     private float x, y;
     private TextureRegion region;
@@ -47,7 +49,10 @@ public class CourseWork extends InteractiveTileObject{
         setCategoryFilter(RunnerGame.DESTROYED_BIT);
         playScreen.removeCourseWork(this);
         Hud.addScore(10);
-        RunnerGame.manager.get("audio/sounds/breakblock.wav", Sound.class).play();
+        RunnerGame.manager.get("audio/sounds/Coursework.wav", Sound.class).play();
     }
 
+
 }
+
+

@@ -10,6 +10,7 @@ import com.mygdx.game.RunnerGame;
 import com.mygdx.game.Screens.PlayScreen;
 import com.mygdx.game.Sprites.Brick;
 import com.mygdx.game.Sprites.CourseWork;
+import com.mygdx.game.Sprites.Fire;
 import com.mygdx.game.Sprites.Runner;
 
 import java.util.LinkedList;
@@ -59,7 +60,7 @@ public class B2WorldCreator {
         for (MapObject object : map.getLayers().get(11).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-            new Brick(world,map,rect);
+            new Fire(world,map,rect);
         }
         //create coursework body
         for (MapObject object : map.getLayers().get(12).getObjects().getByType(RectangleMapObject.class)) {
