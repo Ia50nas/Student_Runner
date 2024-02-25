@@ -8,10 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.RunnerGame;
 import com.mygdx.game.Screens.PlayScreen;
-import com.mygdx.game.Sprites.Brick;
-import com.mygdx.game.Sprites.CourseWork;
-import com.mygdx.game.Sprites.Fire;
-import com.mygdx.game.Sprites.Runner;
+import com.mygdx.game.Sprites.*;
 
 import java.util.LinkedList;
 
@@ -30,7 +27,7 @@ public class B2WorldCreator {
         for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-            new Brick(world,map,rect);
+            new Cone(world,map,rect);
         }
         //create Ground body
         for (MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {

@@ -52,6 +52,9 @@ public class Runner extends Sprite {
     public void update(float dt){
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight()/2);
         setRegion(getFrame(dt));
+
+        //System.out.println("Player Position: (" + b2body.getPosition().x + ", " + b2body.getPosition().y + ")");
+
     }
 
     private TextureRegion getFrame(float dt) {
@@ -100,7 +103,7 @@ public class Runner extends Sprite {
 
     public  void defineRunner(){
         BodyDef bdef = new BodyDef();
-        bdef.position.set(32 / RunnerGame.PPM, 32 / RunnerGame.PPM);
+        bdef.position.set(1, 8);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 

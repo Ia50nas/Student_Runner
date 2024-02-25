@@ -48,7 +48,7 @@ public class CourseWork extends InteractiveTileObject{
         Gdx.app.log("Coursework", "Collision");
         setCategoryFilter(RunnerGame.DESTROYED_BIT);
         playScreen.removeCourseWork(this);
-        Hud.addScore(10);
+        Hud.addScore(20);
         RunnerGame.manager.get("audio/sounds/Coursework.wav", Sound.class).play();
     }
 

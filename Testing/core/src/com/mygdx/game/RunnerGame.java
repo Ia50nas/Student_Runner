@@ -21,6 +21,8 @@ public class RunnerGame extends Game {
 	public  static  final  short COURSEWORK_BIT = 8;
 	public static final short DESTROYED_BIT = 16;
 	public SpriteBatch batch;
+	public static boolean Level1 = true;
+	public static boolean Level2 = false;
 
 	public static AssetManager manager;
 	@Override
@@ -30,8 +32,8 @@ public class RunnerGame extends Game {
 		manager = new AssetManager();
 		manager.load("audio/music/Runner_Game_Music.wav" , Music.class);
 		manager.load("audio/sounds/Coursework.wav" , Sound.class);
-		manager.load("audio/sounds/bump.wav" , Sound.class);
-		manager.load("audio/sounds/breakblock.wav" , Sound.class);
+		manager.load("audio/sounds/fire.wav" , Sound.class);
+		manager.load("audio/sounds/Game_hit.wav" , Sound.class);
 		manager.finishLoading();
 		setScreen(new PlayScreen(this));
 	}

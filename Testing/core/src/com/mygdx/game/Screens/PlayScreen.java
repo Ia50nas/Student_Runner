@@ -48,6 +48,7 @@ public class PlayScreen implements Screen {
     private LinkedList<CourseWork> courseWorks;
     private Music music;
 
+
     public PlayScreen(RunnerGame game) {
         atlas = new TextureAtlas("Runner.pack");
         this.game = game;
@@ -94,6 +95,7 @@ public class PlayScreen implements Screen {
     public void handleInput(float dt) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
             player.b2body.applyLinearImpulse(new Vector2(0, 5f), player.b2body.getWorldCenter(), true);
+
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
             player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
@@ -106,8 +108,19 @@ public class PlayScreen implements Screen {
         player.update(dt);
         hud.update(dt);
         gamecam.position.x = player.b2body.getPosition().x;
+        if(RunnerGame.Level1 == true) {
+            gamecam.position.y = 8;
+        }
+
+        if((RunnerGame.Level1 && player.b2body.getPosition().x > 62.7 && player.b2body.getPosition().x < 64) && player.b2body.getPosition().y >1 ){
+            RunnerGame.Level1 = false;
+            RunnerGame.Level2 = true;
+            gamecam.position.y = 0;
+        }
+
         gamecam.update();
         renderer.setView(gamecam);
+
 
     }
 
