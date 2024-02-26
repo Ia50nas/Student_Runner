@@ -47,10 +47,14 @@ public class PlayScreen implements Screen {
 
     private LinkedList<CourseWork> courseWorks;
     private Music music;
+    private  TextureAtlas atlasLevel1;
+    private  TextureAtlas atlasLevel2;
+    private TextureAtlas currentAtlas;
+
 
 
     public PlayScreen(RunnerGame game) {
-        atlas = new TextureAtlas("Runner.pack");
+        atlas = new TextureAtlas("All.pack");
         this.game = game;
         gamecam = new OrthographicCamera();
         gameport = new FitViewport(16 * 100 / RunnerGame.PPM, 16 * 51 / RunnerGame.PPM, gamecam);
@@ -112,9 +116,10 @@ public class PlayScreen implements Screen {
             gamecam.position.y = 8;
         }
 
-        if((RunnerGame.Level1 && player.b2body.getPosition().x > 62.7 && player.b2body.getPosition().x < 64) && player.b2body.getPosition().y >1 ){
+        if((RunnerGame.Level1 && player.b2body.getPosition().x > 62.7 && player.b2body.getPosition().x < 64) && player.b2body.getPosition().y < 1 ){
             RunnerGame.Level1 = false;
             RunnerGame.Level2 = true;
+            player = new Runner(world, this);
             gamecam.position.y = 0;
         }
 

@@ -1,0 +1,40 @@
+
+Runner_Level2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Run_RightL2
+  rotate: false
+  xy: 1, 1
+  size: 18, 24
+  orig: 18, 24
+  offset: 0, 0
+  index: -1
+Run_RightL3
+  rotate: false
+  xy: 21, 1
+  size: 18, 24
+  orig: 18, 24
+  offset: 0, 0
+  index: -1
+Run_RightL4
+  rotate: false
+  xy: 41, 1
+  size: 18, 24
+  orig: 18, 24
+  offset: 0, 0
+  index: -1
+Run_RightL5
+  rotate: false
+  xy: 61, 1
+  size: 18, 24
+  orig: 18, 24
+  offset: 0, 0
+  index: -1
+Stand_StillL
+  rotate: false
+  xy: 81, 8
+  size: 16, 17
+  orig: 16, 17
+  offset: 0, 0
+  index: -1
