@@ -21,8 +21,8 @@ public class RunnerGame extends Game {
 	public  static  final  short COURSEWORK_BIT = 8;
 	public static final short DESTROYED_BIT = 16;
 	public SpriteBatch batch;
-	public static boolean Level1 = true;
-	public static boolean Level2 = false;
+	public static boolean Level1 = false;
+	public static boolean Level2 = true;
 
 	public static AssetManager manager;
 	@Override

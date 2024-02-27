@@ -113,14 +113,14 @@ public class PlayScreen implements Screen {
         hud.update(dt);
         gamecam.position.x = player.b2body.getPosition().x;
         if(RunnerGame.Level1 == true) {
-            gamecam.position.y = 8;
+            gamecam.position.y = 11;
         }
 
         if((RunnerGame.Level1 && player.b2body.getPosition().x > 62.7 && player.b2body.getPosition().x < 64) && player.b2body.getPosition().y < 1 ){
             RunnerGame.Level1 = false;
             RunnerGame.Level2 = true;
             player = new Runner(world, this);
-            gamecam.position.y = 0;
+            gamecam.position.y = 2;
         }
 
         gamecam.update();

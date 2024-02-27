@@ -76,7 +76,7 @@ public class Runner extends Sprite {
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight()/2);
         setRegion(getFrame(dt));
 
-        System.out.println("Player Position: (" + b2body.getPosition().x + ", " + b2body.getPosition().y + ")");
+        //System.out.println("Player Position: (" + b2body.getPosition().x + ", " + b2body.getPosition().y + ")");
 
     }
 
@@ -127,7 +127,7 @@ public class Runner extends Sprite {
     public  void defineRunner(){
         BodyDef bdef = new BodyDef();
         if(Level1){
-            bdef.position.set(1, 8);
+            bdef.position.set(1, 10);
         } else if (Level2) {
             bdef.position.set(1,1);
         }
