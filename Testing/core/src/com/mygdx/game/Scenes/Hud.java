@@ -15,12 +15,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import java.awt.*;
 
+import static com.mygdx.game.RunnerGame.*;
+
 public class Hud implements Disposable {
     public Stage stage;
     private Viewport viewport;
-    private Integer worldTimer;
+    public static Integer worldTimer;
     private float timeCount;
-    private static Integer score;
+    public static Integer score;
 
     Label countdownLabel;
     static Label scoreLabel;
@@ -30,9 +32,16 @@ public class Hud implements Disposable {
     Label RunnerLabel;
 
     public  Hud(SpriteBatch sb){
-        worldTimer = 120;
         timeCount = 0;
-        score = 0;
+        if(Level1){
+            score = 0;
+            worldTimer = 180;
+
+        } else if (Level2) {
+            score = Score;
+            worldTimer = WorldTimer;
+        }
+
 
         viewport = new FitViewport(RunnerGame.V_WIDTH ,RunnerGame.V_HEIGHT,new OrthographicCamera());
         stage = new Stage(viewport, sb);
@@ -43,10 +52,17 @@ public class Hud implements Disposable {
 
         countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        timeLabel = new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        levelLabel = new Label("Level 1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        worldLabel = new Label("Leipzig Town", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        RunnerLabel = new Label("Runner", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        timeLabel = new Label("Timer", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        if(Level1){
+            levelLabel = new Label("Level 1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+            worldLabel = new Label("Leipzig Town", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+            RunnerLabel = new Label("Runner", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        } else if (Level2) {
+            levelLabel = new Label("Level 2", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+            worldLabel = new Label("Sea", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+            RunnerLabel = new Label("Diver", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        }
+
 
         table.add(RunnerLabel).expandX().padTop(10);
         table.add(worldLabel).expandX().padTop(10);
@@ -70,7 +86,7 @@ public class Hud implements Disposable {
     }
 
     public static void addScore(int value){
-        score+=value;
+        score+= value;
         scoreLabel.setText(String.format("%06d", score));
     }
 

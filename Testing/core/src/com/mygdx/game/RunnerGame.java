@@ -23,6 +23,8 @@ public class RunnerGame extends Game {
 	public SpriteBatch batch;
 	public static boolean Level1 = true;
 	public static boolean Level2 = false;
+	public static int Score = 0;
+	public static int WorldTimer = 0;
 
 	public static AssetManager manager;
 	@Override

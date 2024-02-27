@@ -28,6 +28,7 @@ import com.mygdx.game.Tools.WorldContactListener;
 
 import java.util.LinkedList;
 
+
 public class PlayScreen implements Screen {
     private RunnerGame game;
     private TextureAtlas atlas;
@@ -47,9 +48,6 @@ public class PlayScreen implements Screen {
 
     private LinkedList<CourseWork> courseWorks;
     private Music music;
-    private  TextureAtlas atlasLevel1;
-    private  TextureAtlas atlasLevel2;
-    private TextureAtlas currentAtlas;
 
 
 
@@ -121,6 +119,9 @@ public class PlayScreen implements Screen {
             RunnerGame.Level2 = true;
             player = new Runner(world, this);
             gamecam.position.y = 2;
+            RunnerGame.Score = Hud.score;
+            RunnerGame.WorldTimer = Hud.worldTimer;
+            hud = new Hud(game.batch);
         }
 
         gamecam.update();
