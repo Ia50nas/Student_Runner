@@ -6,8 +6,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.RunnerGame;
 
-public class Brick extends InteractiveTileObject{
-    public Brick(World world, TiledMap map, Rectangle bounds){
+public class Obstacle extends InteractiveTileObject{
+    public Obstacle(World world, TiledMap map, Rectangle bounds){
         super(world , map , bounds);
         fixture.setUserData(this);
         setCategoryFilter(RunnerGame.BRICK_BIT);

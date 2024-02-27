@@ -18,6 +18,9 @@ import com.mygdx.game.RunnerGame;
 import com.mygdx.game.Scenes.Hud;
 import com.mygdx.game.Screens.PlayScreen;
 
+import static com.mygdx.game.RunnerGame.Level1;
+import static com.mygdx.game.RunnerGame.Level2;
+
 public class CourseWork extends InteractiveTileObject{
     private boolean needsTeleportation = false;
     private static TiledMapTileSet set;
@@ -34,7 +37,12 @@ public class CourseWork extends InteractiveTileObject{
         this.y = bounds.getY() / RunnerGame.PPM;
         this.playScreen = playScreen;
 
-        region = new TextureRegion(new Texture(Gdx.files.internal("Coursework.png")));
+        if(this.y > 7 ) {
+            region = new TextureRegion(new Texture(Gdx.files.internal("Coursework.png")));
+        } else if (this.y <7 ) {
+            region = new TextureRegion(new Texture(Gdx.files.internal("Coursework_L2.png")));
+        }
+
     }
 
     public void render(SpriteBatch batch) {
