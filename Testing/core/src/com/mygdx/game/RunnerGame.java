@@ -21,8 +21,8 @@ public class RunnerGame extends Game {
 	public  static  final  short COURSEWORK_BIT = 8;
 	public static final short DESTROYED_BIT = 16;
 	public SpriteBatch batch;
-	public static boolean Level1 = true;
-	public static boolean Level2 = false;
+	public static boolean Level1 = false;
+	public static boolean Level2 = true;
 	public static int Score = 0;
 	public static int WorldTimer = 0;
 
@@ -36,6 +36,7 @@ public class RunnerGame extends Game {
 		manager.load("audio/sounds/Coursework.wav" , Sound.class);
 		manager.load("audio/sounds/fire.wav" , Sound.class);
 		manager.load("audio/sounds/Game_hit.wav" , Sound.class);
+		manager.load("audio/sounds/Mine_Hit.wav", Sound.class);
 		manager.finishLoading();
 		setScreen(new PlayScreen(this));
 	}
