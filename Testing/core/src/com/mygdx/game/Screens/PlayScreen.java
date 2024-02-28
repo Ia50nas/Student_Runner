@@ -99,9 +99,9 @@ public class PlayScreen implements Screen {
             player.b2body.applyLinearImpulse(new Vector2(0, 5f), player.b2body.getWorldCenter(), true);
 
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
-            player.b2body.applyLinearImpulse(new Vector2(0.2f, 0), player.b2body.getWorldCenter(), true);
+            player.b2body.applyLinearImpulse(new Vector2(0.3f, 0), player.b2body.getWorldCenter(), true);
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
-            player.b2body.applyLinearImpulse(new Vector2(-0.2f, 0), player.b2body.getWorldCenter(), true);
+            player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0), player.b2body.getWorldCenter(), true);
     }
 
     public void update(float dt) {
@@ -111,18 +111,33 @@ public class PlayScreen implements Screen {
         hud.update(dt);
         gamecam.position.x = player.b2body.getPosition().x;
         if(RunnerGame.Level1 == true) {
-            gamecam.position.y = 11;
+            gamecam.position.y = 12;
         }
 
-        if((RunnerGame.Level1 && player.b2body.getPosition().x > 62.7 && player.b2body.getPosition().x < 64) && player.b2body.getPosition().y < 1 ){
+        if((RunnerGame.Level1 && player.b2body.getPosition().x > 62.7 && player.b2body.getPosition().x < 64) && player.b2body.getPosition().y < 8 ){
             RunnerGame.Level1 = false;
             RunnerGame.Level2 = true;
+            RunnerGame.Level3 = false;
             player = new Runner(world, this);
-            gamecam.position.y = 2;
+            gamecam.position.y = 4;
             RunnerGame.Score = Hud.score;
             RunnerGame.WorldTimer = Hud.worldTimer;
             hud = new Hud(game.batch);
         }
+        if((RunnerGame.Level2 && player.b2body.getPosition().x > 65 ) && player.b2body.getPosition().y < 0 ){
+            RunnerGame.Level1 = false;
+            RunnerGame.Level2 = false;
+            RunnerGame.Level3 = true;
+            player = new Runner(world, this);
+            gamecam.position.y = player.b2body.getPosition().y;
+            RunnerGame.Score = Hud.score;
+            RunnerGame.WorldTimer = Hud.worldTimer;
+            hud = new Hud(game.batch);
+        }
+        if(RunnerGame.Level3){
+            gamecam.position.y = player.b2body.getPosition().y;
+        }
+
 
         gamecam.update();
         renderer.setView(gamecam);
@@ -141,7 +156,7 @@ public class PlayScreen implements Screen {
         renderer.render();
 
         //render box2d
-        b2dr.render(world, gamecam.combined);
+        //b2dr.render(world, gamecam.combined);
 
         //player
         game.batch.setProjectionMatrix(gamecam.combined);

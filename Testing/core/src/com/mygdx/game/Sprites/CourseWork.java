@@ -18,8 +18,7 @@ import com.mygdx.game.RunnerGame;
 import com.mygdx.game.Scenes.Hud;
 import com.mygdx.game.Screens.PlayScreen;
 
-import static com.mygdx.game.RunnerGame.Level1;
-import static com.mygdx.game.RunnerGame.Level2;
+import static com.mygdx.game.RunnerGame.*;
 
 public class CourseWork extends InteractiveTileObject{
     private boolean needsTeleportation = false;
@@ -37,10 +36,12 @@ public class CourseWork extends InteractiveTileObject{
         this.y = bounds.getY() / RunnerGame.PPM;
         this.playScreen = playScreen;
 
-        if(this.y > 7 ) {
+        if(Level1 ) {
             region = new TextureRegion(new Texture(Gdx.files.internal("Coursework.png")));
-        } else if (this.y <7 ) {
+        } else if (Level2) {
             region = new TextureRegion(new Texture(Gdx.files.internal("Coursework_L2.png")));
+        } else if (Level3) {
+            region = new TextureRegion(new Texture(Gdx.files.internal("CourseworkMarked.png")));
         }
 
     }

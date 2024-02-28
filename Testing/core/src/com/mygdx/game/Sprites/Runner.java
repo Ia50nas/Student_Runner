@@ -9,8 +9,7 @@ import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.RunnerGame;
 import com.mygdx.game.Screens.PlayScreen;
 
-import static com.mygdx.game.RunnerGame.Level1;
-import static com.mygdx.game.RunnerGame.Level2;
+import static com.mygdx.game.RunnerGame.*;
 
 public class Runner extends Sprite {
     public enum State{FALLING, JUMPING,STANDING, RUNNING};
@@ -32,7 +31,7 @@ public class Runner extends Sprite {
         RunningRight = true;
 
     Array<TextureRegion> frames = new Array<TextureRegion>();
-        if(Level1) {
+        if(Level1 || Level3) {
             frames.add(new TextureRegion(getTexture(), 1, 42, 17, 17));
             frames.add(new TextureRegion(getTexture(), 1, 23, 17, 17));
             frames.add(new TextureRegion(getTexture(), 67, 42, 17, 17));
@@ -42,13 +41,18 @@ public class Runner extends Sprite {
             frames.add(new TextureRegion(getTexture(), 461, 35, 18, 24));
             frames.add(new TextureRegion(getTexture(), 481, 35, 18, 24));
             frames.add(new TextureRegion(getTexture(), 135, 1, 18, 24));
+        }else if (Level3) {
+            frames.add(new TextureRegion(getTexture(), 1, 42, 17, 17));
+            frames.add(new TextureRegion(getTexture(), 1, 23, 17, 17));
+            frames.add(new TextureRegion(getTexture(), 67, 42, 17, 17));
+            frames.add(new TextureRegion(getTexture(), 1, 4, 17, 17));
         }
         RunnerRun = new Animation(0.1f, frames);
         frames.clear();
 
 
 
-        if(Level1) {
+        if(Level1 ) {
             frames.add(new TextureRegion(getTexture(), 1, 42, 17, 17));
             RunnerJump = new Animation(0.1f, frames);
         }
@@ -56,7 +60,10 @@ public class Runner extends Sprite {
             frames.add(new TextureRegion(getTexture(), 441, 35, 18, 24));
             RunnerJump = new Animation(0.1f, frames);
         }
-
+        if(Level3) {
+            frames.add(new TextureRegion(getTexture(), 1, 42, 17, 17));
+            RunnerJump = new Animation(0.1f, frames);
+        }
         defineRunner();
 
         if(Level1) {
@@ -67,7 +74,10 @@ public class Runner extends Sprite {
             frames.add(new TextureRegion(getTexture(), 135, 1, 18,24));
             RunnerStand = new TextureRegion(getTexture(), 135, 1, 18, 24);
         }
-
+        if(Level3) {
+            frames.add(new TextureRegion(getTexture(), 155, 8, 16,17));
+            RunnerStand = new TextureRegion(getTexture(), 155, 8, 17, 17);
+        }
 
         setBounds(0,0,48/RunnerGame.PPM,48/RunnerGame.PPM);
         setRegion(RunnerStand);
@@ -76,7 +86,7 @@ public class Runner extends Sprite {
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight()/2);
         setRegion(getFrame(dt));
 
-        //System.out.println("Player Position: (" + b2body.getPosition().x + ", " + b2body.getPosition().y + ")");
+        System.out.println("Player Position: (" + b2body.getPosition().x + ", " + b2body.getPosition().y + ")");
 
     }
 
@@ -127,9 +137,11 @@ public class Runner extends Sprite {
     public  void defineRunner(){
         BodyDef bdef = new BodyDef();
         if(Level1){
-            bdef.position.set(1, 10);
+            bdef.position.set(60, 10);
         } else if (Level2) {
-            bdef.position.set(1,1);
+            bdef.position.set(60,1);
+        } else if (Level3) {
+            bdef.position.set(89, 9);
         }
 
         bdef.type = BodyDef.BodyType.DynamicBody;

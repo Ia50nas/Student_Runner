@@ -40,6 +40,10 @@ public class Hud implements Disposable {
         } else if (Level2) {
             score = Score;
             worldTimer = WorldTimer;
+
+        } else if (Level3) {
+            score = Score;
+            worldTimer = WorldTimer;
         }
 
 
@@ -61,6 +65,10 @@ public class Hud implements Disposable {
             levelLabel = new Label("Level 2", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
             worldLabel = new Label("Sea", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
             RunnerLabel = new Label("Diver", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        } else if (Level3) {
+            levelLabel = new Label("Level 3", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+            worldLabel = new Label("Lancaster Corridor's", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+            RunnerLabel = new Label("Student", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         }
 
 
