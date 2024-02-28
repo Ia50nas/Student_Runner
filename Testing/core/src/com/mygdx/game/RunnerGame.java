@@ -37,6 +37,7 @@ public class RunnerGame extends Game {
 		manager.load("audio/sounds/fire.wav" , Sound.class);
 		manager.load("audio/sounds/Game_hit.wav" , Sound.class);
 		manager.load("audio/sounds/Mine_Hit.wav", Sound.class);
+		manager.load("audio/sounds/Urchin_Hit.wav", Sound.class);
 		manager.finishLoading();
 		setScreen(new PlayScreen(this));
 	}
