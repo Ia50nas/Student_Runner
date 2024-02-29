@@ -2,6 +2,7 @@ package com.mygdx.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -35,27 +36,22 @@ public class StartScreen implements Screen {
         playSkin.add("PlayButton", playTexture);
         exitSkin.add("ExitButton", exitTexture);//
 
-
-
         ImageButton.ImageButtonStyle playButtonStyle = new ImageButton.ImageButtonStyle();
         playButtonStyle.imageUp = playSkin.getDrawable("PlayButton");
 
         ImageButton.ImageButtonStyle exitButtonStyle = new ImageButton.ImageButtonStyle();
         exitButtonStyle.imageUp = exitSkin.getDrawable("ExitButton");
 
-
-
         final ImageButton playButton = new ImageButton(playButtonStyle);
         final ImageButton exitButton = new ImageButton(exitButtonStyle);
         playButton.setPosition((Gdx.graphics.getWidth() - playButton.getWidth())/2, (Gdx.graphics.getHeight() - playButton.getHeight())/2 +200);
         exitButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/2, (Gdx.graphics.getHeight() - exitButton.getHeight())/2 -200);
 
-
         playButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 playButton.setChecked(false);
-                game.setScreen(new PlayScreen(game));
+                game.setScreen((new PlayScreen(game)));
             }
         });
 
@@ -78,11 +74,16 @@ public class StartScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);           //clear screen
+
         stage.draw();
     }
     @Override
     public void dispose() {
         playSkin.dispose();
+        exitSkin.dispose();
+        stage.dispose();
     }
 
     @Override

@@ -25,7 +25,6 @@ import com.mygdx.game.Tools.B2WorldCreator;
 public class PlayScreen implements Screen{
     private RunnerGame game;
     private TextureAtlas atlas;
-    Texture texture;
     private OrthographicCamera gamecam;
     private Viewport gameport;
     private Hud hud;
@@ -54,7 +53,7 @@ public class PlayScreen implements Screen{
         new B2WorldCreator(world,map);
         player = new Runner(world,this);
 
-        }
+    }
     public TextureAtlas getAtlas(){
         return  atlas;
     }
@@ -62,16 +61,23 @@ public class PlayScreen implements Screen{
     public void show() {
 
     }
-    public void handleInput(float dt){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP))
-            player.b2body.applyLinearImpulse(new Vector2(0,4f), player.b2body.getWorldCenter(), true);
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
-            player.b2body.applyLinearImpulse(new Vector2(0.05f,0), player.b2body.getWorldCenter(),true);
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
-            player.b2body.applyLinearImpulse(new Vector2(-0.05f,0), player.b2body.getWorldCenter(),true);
+    public void handleInput() {
+
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2) {
+            player.b2body.applyLinearImpulse(new Vector2(0.05f, 0), player.b2body.getWorldCenter(), true);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2) {
+            player.b2body.applyLinearImpulse(new Vector2(-0.05f, 0), player.b2body.getWorldCenter(), true);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+            this.dispose();
+            game.setScreen(new MenuScreen(game));
+        }
     }
     public void update(float dt){
-        handleInput(dt);
         world.step(1/60f,6,2);
         player.update(dt);
         gamecam.position.x = player.b2body.getPosition().x;
@@ -103,6 +109,7 @@ public class PlayScreen implements Screen{
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
+        handleInput();
     }
 
     @Override

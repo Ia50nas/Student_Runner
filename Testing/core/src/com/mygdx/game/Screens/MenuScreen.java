@@ -2,6 +2,7 @@ package com.mygdx.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -36,13 +37,13 @@ public class MenuScreen implements Screen {
         Texture optionsTexture = new Texture(Gdx.files.internal("Buttons/Options.png"));
         Texture infoTexture = new Texture(Gdx.files.internal("Buttons/Info.png"));
         playSkin = new Skin();
-        exitSkin = new Skin(); //
+        exitSkin = new Skin();
         optionsSkin = new Skin();
         infoSkin = new Skin();
 
 
         playSkin.add("PlayButton", playTexture);
-        exitSkin.add("ExitButton", exitTexture);//
+        exitSkin.add("ExitButton", exitTexture);
         optionsSkin.add("OptionsButton",optionsTexture);
         infoSkin.add("InfoButton",infoTexture);
 
@@ -63,10 +64,10 @@ public class MenuScreen implements Screen {
         final ImageButton optionsButton = new ImageButton(optionsButtonStyle);
         final ImageButton infoButton = new ImageButton(infoButtonStyle);
 
-        playButton.setPosition((Gdx.graphics.getWidth() - playButton.getWidth())/2, (Gdx.graphics.getHeight() - playButton.getHeight())/2 + 200);
-        exitButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/2, (Gdx.graphics.getHeight() - exitButton.getHeight())/2 +100);
-        optionsButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/2, (Gdx.graphics.getHeight() - exitButton.getHeight())/2 -100);
-        infoButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/2, (Gdx.graphics.getHeight() - exitButton.getHeight())/2 -200);
+        playButton.setPosition((Gdx.graphics.getWidth() - playButton.getWidth())/2, (Gdx.graphics.getHeight() - playButton.getHeight())/2 + 300);
+        optionsButton.setPosition((Gdx.graphics.getWidth() - optionsButton.getWidth())/2, (Gdx.graphics.getHeight() - optionsButton.getHeight())/2 + 150);
+        infoButton.setPosition((Gdx.graphics.getWidth() - infoButton.getWidth())/2, (Gdx.graphics.getHeight() - infoButton.getHeight())/2 - 150);
+        exitButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/2, (Gdx.graphics.getHeight() - exitButton.getHeight())/2 - 300);
 
         playButton.addListener(new ClickListener() {
             @Override
@@ -80,7 +81,7 @@ public class MenuScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 exitButton.setChecked(false);
-                game.setScreen(new PlayScreen(game));
+                Gdx.app.exit();
             }
         });
 
@@ -96,19 +97,22 @@ public class MenuScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 infoButton.setChecked(false);
-                game.setScreen(new PlayScreen(game));
+                game.setScreen(new InfoScreen(game));
             }
         });
 
-        stage.addActor(exitButton);
         stage.addActor(playButton);
         stage.addActor(optionsButton);
         stage.addActor(infoButton);
+        stage.addActor(exitButton);
 
     }
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);           //clear screen
+
         stage.draw();
     }
     @Override
