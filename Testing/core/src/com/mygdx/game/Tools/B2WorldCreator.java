@@ -24,58 +24,70 @@ public class B2WorldCreator {
         this.playScreen = playScreen;
 
         //create cone body
-        for (MapObject object : map.getLayers().get(9).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(10).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new Cone(world,map,rect);
         }
         //create Ground body
-        for (MapObject object : map.getLayers().get(10).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            new Obstacle(world,map,rect);
-        }
-        //create Boundaries body
         for (MapObject object : map.getLayers().get(11).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new Obstacle(world,map,rect);
         }
-        //create car Bodies
+        //create Boundaries body
         for (MapObject object : map.getLayers().get(12).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new Obstacle(world,map,rect);
         }
-        //create wall Bodies
+        //create car Bodies
         for (MapObject object : map.getLayers().get(13).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new Obstacle(world,map,rect);
         }
-        //create fire Bodies
+        //create wall Bodies
         for (MapObject object : map.getLayers().get(14).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Obstacle(world,map,rect);
+        }
+        //create fire Bodies
+        for (MapObject object : map.getLayers().get(15).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new Fire(world,map,rect);
         }
         //create coursework body
-        for (MapObject object : map.getLayers().get(15).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(16).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             courseworks.add(new CourseWork(world,map,rect, playScreen));
         }
         //create Mine Bodies
-        for (MapObject object : map.getLayers().get(16).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(17).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new Mine(world,map,rect);
         }
         //create urchin bodies
-        for (MapObject object : map.getLayers().get(17).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(18).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new Urchin(world,map,rect);
+        }
+        //create Book bodies
+        for (MapObject object : map.getLayers().get(19).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Book(world,map,rect);
+        }
+        //create water bodies
+        for (MapObject object : map.getLayers().get(20).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Water(world,map,rect);
         }
     }
 }

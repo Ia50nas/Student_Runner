@@ -12,7 +12,7 @@ public class Mine extends InteractiveTileObject {
     public Mine(World world, TiledMap map, Rectangle bounds) {
         super(world, map, bounds);
         fixture.setUserData(this);
-        setCategoryFilter(RunnerGame.FIRE_BIT);
+        setCategoryFilter(RunnerGame.OBSTACLE_BIT);
     }
 
     @Override

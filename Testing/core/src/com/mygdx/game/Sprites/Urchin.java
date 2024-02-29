@@ -12,7 +12,7 @@ public class Urchin extends InteractiveTileObject {
     public Urchin(World world, TiledMap map, Rectangle bounds) {
         super(world, map, bounds);
         fixture.setUserData(this);
-        setCategoryFilter(RunnerGame.FIRE_BIT);
+        setCategoryFilter(RunnerGame.OBSTACLE_BIT);
     }
 
     @Override

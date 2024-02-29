@@ -123,6 +123,7 @@ public class PlayScreen implements Screen {
             RunnerGame.Score = Hud.score;
             RunnerGame.WorldTimer = Hud.worldTimer;
             hud = new Hud(game.batch);
+
         }
         if((RunnerGame.Level2 && player.b2body.getPosition().x > 65 ) && player.b2body.getPosition().y < 0 ){
             RunnerGame.Level1 = false;
