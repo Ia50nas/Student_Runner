@@ -18,6 +18,10 @@ public class MenuScreen implements Screen {
 
     private Skin exitSkin;
 
+    private Skin optionsSkin;
+
+    private Skin infoSkin;
+
     public MenuScreen(RunnerGame game) {
         this.game = game;
         this.stage = new Stage(new ScreenViewport());
@@ -27,13 +31,20 @@ public class MenuScreen implements Screen {
     }
 
     public void initButtons() {
-        Texture playTexture = new Texture(Gdx.files.internal("MenuScreen/Play.png"));
-        Texture exitTexture = new Texture(Gdx.files.internal("MenuScreen/Exit.png"));
+        Texture playTexture = new Texture(Gdx.files.internal("Buttons/Start.png"));
+        Texture exitTexture = new Texture(Gdx.files.internal("Buttons/Exit.png"));
+        Texture optionsTexture = new Texture(Gdx.files.internal("Buttons/Options.png"));
+        Texture infoTexture = new Texture(Gdx.files.internal("Buttons/Info.png"));
         playSkin = new Skin();
         exitSkin = new Skin(); //
+        optionsSkin = new Skin();
+        infoSkin = new Skin();
+
 
         playSkin.add("PlayButton", playTexture);
         exitSkin.add("ExitButton", exitTexture);//
+        optionsSkin.add("OptionsButton",optionsTexture);
+        infoSkin.add("InfoButton",infoTexture);
 
         ImageButton.ImageButtonStyle playButtonStyle = new ImageButton.ImageButtonStyle();
         playButtonStyle.imageUp = playSkin.getDrawable("PlayButton");
@@ -41,10 +52,21 @@ public class MenuScreen implements Screen {
         ImageButton.ImageButtonStyle exitButtonStyle = new ImageButton.ImageButtonStyle();
         exitButtonStyle.imageUp = exitSkin.getDrawable("ExitButton");
 
+        ImageButton.ImageButtonStyle optionsButtonStyle = new ImageButton.ImageButtonStyle();
+        exitButtonStyle.imageUp = optionsSkin.getDrawable("OptionsButton");
+
+        ImageButton.ImageButtonStyle infoButtonStyle = new ImageButton.ImageButtonStyle();
+        infoButtonStyle.imageUp = infoSkin.getDrawable("InfoButton");
+
         final ImageButton playButton = new ImageButton(playButtonStyle);
         final ImageButton exitButton = new ImageButton(exitButtonStyle);
-        playButton.setPosition((Gdx.graphics.getWidth() - playButton.getWidth())/2, (Gdx.graphics.getHeight() - playButton.getHeight())/2);
-        exitButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/3, (Gdx.graphics.getHeight() - exitButton.getHeight())/3);
+        final ImageButton optionsButton = new ImageButton(optionsButtonStyle);
+        final ImageButton infoButton = new ImageButton(infoButtonStyle);
+
+        playButton.setPosition((Gdx.graphics.getWidth() - playButton.getWidth())/2, (Gdx.graphics.getHeight() - playButton.getHeight())/2 + 200);
+        exitButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/2, (Gdx.graphics.getHeight() - exitButton.getHeight())/2 +100);
+        optionsButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/2, (Gdx.graphics.getHeight() - exitButton.getHeight())/2 -100);
+        infoButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/2, (Gdx.graphics.getHeight() - exitButton.getHeight())/2 -200);
 
         playButton.addListener(new ClickListener() {
             @Override
@@ -61,8 +83,27 @@ public class MenuScreen implements Screen {
                 game.setScreen(new PlayScreen(game));
             }
         });
+
+        optionsButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                optionsButton.setChecked(false);
+                game.setScreen(new PlayScreen(game));
+            }
+        });
+
+        infoButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                infoButton.setChecked(false);
+                game.setScreen(new PlayScreen(game));
+            }
+        });
+
         stage.addActor(exitButton);
         stage.addActor(playButton);
+        stage.addActor(optionsButton);
+        stage.addActor(infoButton);
 
     }
 

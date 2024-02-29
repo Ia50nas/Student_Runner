@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Screens.PlayScreen;
+import com.mygdx.game.Screens.StartScreen;
 
 public class RunnerGame extends Game {
 	public static  final int V_WIDTH = 400;//400
@@ -16,7 +17,7 @@ public class RunnerGame extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		setScreen(new PlayScreen(this));
+		setScreen(new StartScreen(this));
 	}
 
 	@Override

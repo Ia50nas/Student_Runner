@@ -14,7 +14,7 @@ import com.mygdx.game.RunnerGame;
 public class StartScreen implements Screen {
     private final RunnerGame game;
     private final Stage stage;
-    private Skin playSkin, exitSkin;
+    private Skin playSkin, exitSkin,optionsSkin,infoSkin;
 
     public StartScreen(RunnerGame game) {
         this.game = game;
@@ -25,13 +25,17 @@ public class StartScreen implements Screen {
     }
 
     public void initButtons() {
-        Texture playTexture = new Texture(Gdx.files.internal("MenuScreen/Play.png"));
-        Texture exitTexture = new Texture(Gdx.files.internal("MenuScreen/Exit.png"));
+        Texture playTexture = new Texture(Gdx.files.internal("Buttons/Start.png"));
+        Texture exitTexture = new Texture(Gdx.files.internal("Buttons/Exit.png"));
+
         playSkin = new Skin();
         exitSkin = new Skin(); //
 
+
         playSkin.add("PlayButton", playTexture);
         exitSkin.add("ExitButton", exitTexture);//
+
+
 
         ImageButton.ImageButtonStyle playButtonStyle = new ImageButton.ImageButtonStyle();
         playButtonStyle.imageUp = playSkin.getDrawable("PlayButton");
@@ -39,10 +43,13 @@ public class StartScreen implements Screen {
         ImageButton.ImageButtonStyle exitButtonStyle = new ImageButton.ImageButtonStyle();
         exitButtonStyle.imageUp = exitSkin.getDrawable("ExitButton");
 
+
+
         final ImageButton playButton = new ImageButton(playButtonStyle);
         final ImageButton exitButton = new ImageButton(exitButtonStyle);
-        playButton.setPosition((Gdx.graphics.getWidth() - playButton.getWidth())/2, (Gdx.graphics.getHeight() - playButton.getHeight())/2);
-        exitButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/3, (Gdx.graphics.getHeight() - exitButton.getHeight())/3);
+        playButton.setPosition((Gdx.graphics.getWidth() - playButton.getWidth())/2, (Gdx.graphics.getHeight() - playButton.getHeight())/2 +200);
+        exitButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/2, (Gdx.graphics.getHeight() - exitButton.getHeight())/2 -200);
+
 
         playButton.addListener(new ClickListener() {
             @Override
@@ -59,6 +66,10 @@ public class StartScreen implements Screen {
                 Gdx.app.exit();
             }
         });
+
+
+
+
         stage.addActor(playButton);
         stage.addActor(exitButton);
 
