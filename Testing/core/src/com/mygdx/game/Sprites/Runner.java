@@ -137,9 +137,9 @@ public class Runner extends Sprite {
     public  void defineRunner(){
         BodyDef bdef = new BodyDef();
         if(Level1){
-            bdef.position.set(60, 10);
+            bdef.position.set(1, 10); // test (60,10)
         } else if (Level2) {
-            bdef.position.set(60,1);
+            bdef.position.set(1,1);    // test (60,1)
         } else if (Level3) {
             bdef.position.set(89, 9);
         }

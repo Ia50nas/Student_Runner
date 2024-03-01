@@ -28,6 +28,8 @@ import com.mygdx.game.Tools.WorldContactListener;
 
 import java.util.LinkedList;
 
+import static com.mygdx.game.RunnerGame.canJump;
+
 
 public class PlayScreen implements Screen {
     private RunnerGame game;
@@ -94,27 +96,14 @@ public class PlayScreen implements Screen {
 
     }
 
-    public void handleInput() {
-
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2) {
-            player.b2body.applyLinearImpulse(new Vector2(0.05f, 0), player.b2body.getWorldCenter(), true);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2) {
-            player.b2body.applyLinearImpulse(new Vector2(-0.05f, 0), player.b2body.getWorldCenter(), true);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
-            this.dispose();
-            game.setScreen(new MenuScreen(game));
-        }
-    }
 
     public void handleInput(float dt) {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
-            player.b2body.applyLinearImpulse(new Vector2(0, 5f), player.b2body.getWorldCenter(), true);
-
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+            if(canJump) {
+                player.b2body.applyLinearImpulse(new Vector2(0, 5f), player.b2body.getWorldCenter(), true);
+                canJump = false;
+            }
+        }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
             player.b2body.applyLinearImpulse(new Vector2(0.3f, 0), player.b2body.getWorldCenter(), true);
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
@@ -191,7 +180,7 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
-        handleInput();
+
     }
 
     public void removeCourseWork(CourseWork courseWork) {
