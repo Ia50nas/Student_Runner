@@ -15,13 +15,7 @@ import com.mygdx.game.RunnerGame;
 public class MenuScreen implements Screen {
     private final RunnerGame game;
     private final Stage stage;
-    private Skin playSkin;
-
-    private Skin exitSkin;
-
-    private Skin optionsSkin;
-
-    private Skin infoSkin;
+    private Skin restartSkin, infoSkin, exitSkin;
 
     public MenuScreen(RunnerGame game) {
         this.game = game;
@@ -32,63 +26,39 @@ public class MenuScreen implements Screen {
     }
 
     public void initButtons() {
-        Texture playTexture = new Texture(Gdx.files.internal("Buttons/Start.png"));
-        Texture exitTexture = new Texture(Gdx.files.internal("Buttons/Exit.png"));
-        Texture optionsTexture = new Texture(Gdx.files.internal("Buttons/Options.png"));
+        Texture restartTexture = new Texture(Gdx.files.internal("Buttons/Start.png"));
         Texture infoTexture = new Texture(Gdx.files.internal("Buttons/Info.png"));
-        playSkin = new Skin();
-        exitSkin = new Skin();
-        optionsSkin = new Skin();
+        Texture exitTexture = new Texture(Gdx.files.internal("Buttons/Exit.png"));
+
+        restartSkin = new Skin();
         infoSkin = new Skin();
+        exitSkin = new Skin();
 
-
-        playSkin.add("PlayButton", playTexture);
+        restartSkin.add("RestartButton", restartTexture);
+        infoSkin.add("InfoButton", infoTexture);
         exitSkin.add("ExitButton", exitTexture);
-        optionsSkin.add("OptionsButton",optionsTexture);
-        infoSkin.add("InfoButton",infoTexture);
 
-        ImageButton.ImageButtonStyle playButtonStyle = new ImageButton.ImageButtonStyle();
-        playButtonStyle.imageUp = playSkin.getDrawable("PlayButton");
-
-        ImageButton.ImageButtonStyle exitButtonStyle = new ImageButton.ImageButtonStyle();
-        exitButtonStyle.imageUp = exitSkin.getDrawable("ExitButton");
-
-        ImageButton.ImageButtonStyle optionsButtonStyle = new ImageButton.ImageButtonStyle();
-        exitButtonStyle.imageUp = optionsSkin.getDrawable("OptionsButton");
+        ImageButton.ImageButtonStyle restartButtonStyle = new ImageButton.ImageButtonStyle();
+        restartButtonStyle.imageUp = restartSkin.getDrawable("RestartButton");
 
         ImageButton.ImageButtonStyle infoButtonStyle = new ImageButton.ImageButtonStyle();
         infoButtonStyle.imageUp = infoSkin.getDrawable("InfoButton");
 
-        final ImageButton playButton = new ImageButton(playButtonStyle);
-        final ImageButton exitButton = new ImageButton(exitButtonStyle);
-        final ImageButton optionsButton = new ImageButton(optionsButtonStyle);
-        final ImageButton infoButton = new ImageButton(infoButtonStyle);
+        ImageButton.ImageButtonStyle exitButtonStyle = new ImageButton.ImageButtonStyle();
+        exitButtonStyle.imageUp = exitSkin.getDrawable("ExitButton");
 
-        playButton.setPosition((Gdx.graphics.getWidth() - playButton.getWidth())/2, (Gdx.graphics.getHeight() - playButton.getHeight())/2 + 300);
-        optionsButton.setPosition((Gdx.graphics.getWidth() - optionsButton.getWidth())/2, (Gdx.graphics.getHeight() - optionsButton.getHeight())/2 + 150);
-        infoButton.setPosition((Gdx.graphics.getWidth() - infoButton.getWidth())/2, (Gdx.graphics.getHeight() - infoButton.getHeight())/2 - 150);
+        final ImageButton restartButton = new ImageButton(restartButtonStyle);
+        final ImageButton infoButton = new ImageButton(infoButtonStyle);
+        final ImageButton exitButton = new ImageButton(exitButtonStyle);
+
+        restartButton.setPosition((Gdx.graphics.getWidth() - restartButton.getWidth())/2, (Gdx.graphics.getHeight() - restartButton.getHeight())/2 + 300);
+        infoButton.setPosition((Gdx.graphics.getWidth() - infoButton.getWidth())/2, (Gdx.graphics.getHeight() - infoButton.getHeight())/2);
         exitButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/2, (Gdx.graphics.getHeight() - exitButton.getHeight())/2 - 300);
 
-        playButton.addListener(new ClickListener() {
+        restartButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                playButton.setChecked(false);
-                game.setScreen(new PlayScreen(game));
-            }
-        });
-
-        exitButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                exitButton.setChecked(false);
-                Gdx.app.exit();
-            }
-        });
-
-        optionsButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                optionsButton.setChecked(false);
+                restartButton.setChecked(false);
                 game.setScreen(new PlayScreen(game));
             }
         });
@@ -101,8 +71,15 @@ public class MenuScreen implements Screen {
             }
         });
 
-        stage.addActor(playButton);
-        stage.addActor(optionsButton);
+        exitButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                exitButton.setChecked(false);
+                Gdx.app.exit();
+            }
+        });
+
+        stage.addActor(restartButton);
         stage.addActor(infoButton);
         stage.addActor(exitButton);
 
@@ -117,7 +94,10 @@ public class MenuScreen implements Screen {
     }
     @Override
     public void dispose() {
-        playSkin.dispose();
+        restartSkin.dispose();
+        infoSkin.dispose();
+        exitSkin.dispose();
+        stage.dispose();
     }
 
     @Override

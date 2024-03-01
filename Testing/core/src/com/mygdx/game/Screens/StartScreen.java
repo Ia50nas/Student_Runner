@@ -15,7 +15,7 @@ import com.mygdx.game.RunnerGame;
 public class StartScreen implements Screen {
     private final RunnerGame game;
     private final Stage stage;
-    private Skin playSkin, exitSkin,optionsSkin,infoSkin;
+    private Skin startSkin, infoSkin, exitSkin;
 
     public StartScreen(RunnerGame game) {
         this.game = game;
@@ -26,32 +26,49 @@ public class StartScreen implements Screen {
     }
 
     public void initButtons() {
-        Texture playTexture = new Texture(Gdx.files.internal("Buttons/Start.png"));
+        Texture startTexture = new Texture(Gdx.files.internal("Buttons/Start.png"));
+        Texture infoTexture = new Texture(Gdx.files.internal("Buttons/Info.png"));
         Texture exitTexture = new Texture(Gdx.files.internal("Buttons/Exit.png"));
 
-        playSkin = new Skin();
-        exitSkin = new Skin(); //
+        startSkin = new Skin();
+        infoSkin = new Skin();
+        exitSkin = new Skin();
 
 
-        playSkin.add("PlayButton", playTexture);
-        exitSkin.add("ExitButton", exitTexture);//
+        startSkin.add("StartButton", startTexture);
+        infoSkin.add("InfoButton", infoTexture);
+        exitSkin.add("ExitButton", exitTexture);
 
-        ImageButton.ImageButtonStyle playButtonStyle = new ImageButton.ImageButtonStyle();
-        playButtonStyle.imageUp = playSkin.getDrawable("PlayButton");
+        ImageButton.ImageButtonStyle startButtonStyle = new ImageButton.ImageButtonStyle();
+        startButtonStyle.imageUp = startSkin.getDrawable("StartButton");
+
+        ImageButton.ImageButtonStyle infoButtonStyle = new ImageButton.ImageButtonStyle();
+        infoButtonStyle.imageUp = infoSkin.getDrawable("InfoButton");
 
         ImageButton.ImageButtonStyle exitButtonStyle = new ImageButton.ImageButtonStyle();
         exitButtonStyle.imageUp = exitSkin.getDrawable("ExitButton");
 
-        final ImageButton playButton = new ImageButton(playButtonStyle);
+        final ImageButton startButton = new ImageButton(startButtonStyle);
+        final ImageButton infoButton = new ImageButton(infoButtonStyle);
         final ImageButton exitButton = new ImageButton(exitButtonStyle);
-        playButton.setPosition((Gdx.graphics.getWidth() - playButton.getWidth())/2, (Gdx.graphics.getHeight() - playButton.getHeight())/2 +200);
-        exitButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/2, (Gdx.graphics.getHeight() - exitButton.getHeight())/2 -200);
 
-        playButton.addListener(new ClickListener() {
+        startButton.setPosition((Gdx.graphics.getWidth() - startButton.getWidth())/2, (Gdx.graphics.getHeight() - startButton.getHeight())/2);
+        infoButton.setPosition((Gdx.graphics.getWidth() - infoButton.getWidth())/2, (Gdx.graphics.getHeight() - infoButton.getHeight())/2 - 150);
+        exitButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/2, (Gdx.graphics.getHeight() - exitButton.getHeight())/2 - 300);
+
+        startButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                playButton.setChecked(false);
+                startButton.setChecked(false);
                 game.setScreen((new PlayScreen(game)));
+            }
+        });
+
+        infoButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                infoButton.setChecked(false);
+                game.setScreen(new InfoScreen(game));
             }
         });
 
@@ -63,13 +80,9 @@ public class StartScreen implements Screen {
             }
         });
 
-
-
-
-        stage.addActor(playButton);
+        stage.addActor(startButton);
+        stage.addActor(infoButton);
         stage.addActor(exitButton);
-
-
     }
 
     @Override
@@ -81,7 +94,8 @@ public class StartScreen implements Screen {
     }
     @Override
     public void dispose() {
-        playSkin.dispose();
+        startSkin.dispose();
+        infoSkin.dispose();
         exitSkin.dispose();
         stage.dispose();
     }
