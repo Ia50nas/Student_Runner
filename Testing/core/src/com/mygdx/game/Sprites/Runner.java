@@ -140,7 +140,7 @@ public class Runner extends Sprite {
         if(Level1){
             bdef.position.set(1, 10); //Test = (60,10)
         } else if (Level2) {
-            bdef.position.set(55,1);    //Test = (60,1)
+            bdef.position.set(1,1);    //Test = (60,1)
         } else if (Level3) {
             bdef.position.set(89, 9);   //Test = (89,9)
         }
