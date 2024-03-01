@@ -6,11 +6,12 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Screens.PlayScreen;
+import com.mygdx.game.Screens.StartScreen;
 
 public class RunnerGame extends Game {
 	public static  final int V_WIDTH = 400;//400
 	public static final int V_HEIGHT = 208;//208
-	public static  final float PPM = 100; // pixels per meter
+	public static final float PPM = 100; // pixels per meter
 	public  static final short DEFAULT_BIT = 1;
 	public  static final short RUNNER_BIT = 2;
 	public  static  final  short BRICK_BIT = 4;
@@ -40,7 +41,8 @@ public class RunnerGame extends Game {
 		manager.load("audio/sounds/Books.wav", Sound.class);
 		manager.load("audio/sounds/Water.wav", Sound.class);
 		manager.finishLoading();
-		setScreen(new PlayScreen(this));
+		setScreen(new StartScreen(this));
+
 	}
 
 	@Override

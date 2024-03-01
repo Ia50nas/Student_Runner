@@ -32,7 +32,6 @@ import java.util.LinkedList;
 public class PlayScreen implements Screen {
     private RunnerGame game;
     private TextureAtlas atlas;
-    Texture texture;
     private OrthographicCamera gamecam;
     private Viewport gameport;
     private Hud hud;
@@ -65,7 +64,7 @@ public class PlayScreen implements Screen {
         maploader = new TmxMapLoader();
         map = maploader.load("Town2.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / RunnerGame.PPM);
-
+    
         //Center camera at the start
         gamecam.position.set(gameport.getWorldWidth() / 2, gameport.getWorldHeight() / 2, 0);
 
@@ -85,6 +84,7 @@ public class PlayScreen implements Screen {
         music = RunnerGame.manager.get("audio/music/Runner_Game_Music.wav");
         music.setLooping(true);
         music.play();
+
     }
 
     public TextureAtlas getAtlas() {
@@ -94,6 +94,23 @@ public class PlayScreen implements Screen {
     @Override
     public void show() {
 
+    }
+
+    public void handleInput() {
+
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2) {
+            player.b2body.applyLinearImpulse(new Vector2(0.05f, 0), player.b2body.getWorldCenter(), true);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2) {
+            player.b2body.applyLinearImpulse(new Vector2(-0.05f, 0), player.b2body.getWorldCenter(), true);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+            this.dispose();
+            game.setScreen(new MenuScreen(game));
+        }
     }
 
     public void handleInput(float dt) {
@@ -182,6 +199,7 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
+        handleInput();
     }
 
     public void removeCourseWork(CourseWork courseWork) {
