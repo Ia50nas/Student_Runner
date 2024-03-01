@@ -98,8 +98,8 @@ public class PlayScreen implements Screen {
 
 
     public void handleInput(float dt) {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            if(canJump) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+            if (canJump) {
                 player.b2body.applyLinearImpulse(new Vector2(0, 5f), player.b2body.getWorldCenter(), true);
                 canJump = false;
             }
@@ -108,6 +108,11 @@ public class PlayScreen implements Screen {
             player.b2body.applyLinearImpulse(new Vector2(0.3f, 0), player.b2body.getWorldCenter(), true);
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
             player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0), player.b2body.getWorldCenter(), true);
+
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+            //this.dispose();
+            game.setScreen(new MenuScreen(game));
+        }
     }
 
     public void update(float dt) {
