@@ -22,6 +22,7 @@ public class Runner extends Sprite {
     private  Animation RunnerJump;
     private float stateTimer;
     private  boolean RunningRight;
+
     public Runner(World world, PlayScreen screen){
         super(screen.getAtlas().findRegion("Run_Right1"));
         this.world = world;
@@ -31,7 +32,7 @@ public class Runner extends Sprite {
         RunningRight = true;
 
     Array<TextureRegion> frames = new Array<TextureRegion>();
-        if(Level1 || Level3) {
+        if(Level1 ) {
             frames.add(new TextureRegion(getTexture(), 1, 42, 17, 17));
             frames.add(new TextureRegion(getTexture(), 1, 23, 17, 17));
             frames.add(new TextureRegion(getTexture(), 67, 42, 17, 17));
@@ -137,11 +138,11 @@ public class Runner extends Sprite {
     public  void defineRunner(){
         BodyDef bdef = new BodyDef();
         if(Level1){
-            bdef.position.set(60, 10);
+            bdef.position.set(1, 10); //Test = (60,10)
         } else if (Level2) {
-            bdef.position.set(60,1);
+            bdef.position.set(55,1);    //Test = (60,1)
         } else if (Level3) {
-            bdef.position.set(89, 9);
+            bdef.position.set(89, 9);   //Test = (89,9)
         }
 
         bdef.type = BodyDef.BodyType.DynamicBody;

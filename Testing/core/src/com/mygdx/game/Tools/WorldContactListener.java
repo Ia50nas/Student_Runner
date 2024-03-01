@@ -2,6 +2,8 @@ package com.mygdx.game.Tools;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.*;
+import com.mygdx.game.RunnerGame;
+import com.mygdx.game.Screens.PlayScreen;
 import com.mygdx.game.Sprites.InteractiveTileObject;
 
 public class WorldContactListener implements ContactListener {
@@ -16,6 +18,7 @@ public class WorldContactListener implements ContactListener {
 
             if(object.getUserData() != null && InteractiveTileObject.class.isAssignableFrom(object.getUserData().getClass())){
                 ((InteractiveTileObject) object.getUserData()).onHeadHit();
+                PlayScreen.canJump = true;
             }
         }
     }
