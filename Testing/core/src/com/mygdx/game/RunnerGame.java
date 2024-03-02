@@ -23,9 +23,11 @@ public class RunnerGame extends Game {
 	public static boolean Level2 = false;
 	public static boolean Level3 = false;
 	public static boolean canJump = true;
-
 	public static int Score = 0;
 	public static int WorldTimer = 0;
+	public enum Screen_Type {
+		START, MENU, RESUME, GAME, INFO, WIN, LOSE
+	}
 
 	public static AssetManager manager;
 	@Override
