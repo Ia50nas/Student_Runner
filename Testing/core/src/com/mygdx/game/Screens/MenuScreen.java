@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -16,27 +17,34 @@ import com.mygdx.game.Tools.ScreenManager;
 public class MenuScreen implements Screen {
     private final ScreenManager screenManager;
     private final Stage stage;
-    private Skin restartSkin, infoSkin, exitSkin;
+    private Skin restartSkin, infoSkin, exitSkin, resumeSkin;
+    private final TextureRegion Bg;
+    private final RunnerGame game;
 
-    public MenuScreen(ScreenManager screenManager) {
+    public MenuScreen(RunnerGame game, ScreenManager screenManager) {
+        this.game = game;
         this.screenManager = screenManager;
         this.stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
         initButtons();
+        Bg = new TextureRegion(new Texture("Info_Screen.png"));
     }
 
     public void initButtons() {
         Texture restartTexture = new Texture(Gdx.files.internal("Buttons/Start.png"));
         Texture infoTexture = new Texture(Gdx.files.internal("Buttons/Info.png"));
         Texture exitTexture = new Texture(Gdx.files.internal("Buttons/Exit.png"));
+        Texture resumeTexture = new Texture(Gdx.files.internal("Buttons/Exit.png"));
 
         restartSkin = new Skin();
         infoSkin = new Skin();
         exitSkin = new Skin();
+        resumeSkin = new Skin();
 
         restartSkin.add("RestartButton", restartTexture);
         infoSkin.add("InfoButton", infoTexture);
         exitSkin.add("ExitButton", exitTexture);
+        resumeSkin.add("ResumeButton", resumeTexture);
 
         ImageButton.ImageButtonStyle restartButtonStyle = new ImageButton.ImageButtonStyle();
         restartButtonStyle.imageUp = restartSkin.getDrawable("RestartButton");
@@ -47,13 +55,18 @@ public class MenuScreen implements Screen {
         ImageButton.ImageButtonStyle exitButtonStyle = new ImageButton.ImageButtonStyle();
         exitButtonStyle.imageUp = exitSkin.getDrawable("ExitButton");
 
+        ImageButton.ImageButtonStyle resumeButtonStyle = new ImageButton.ImageButtonStyle();
+        exitButtonStyle.imageUp = resumeSkin.getDrawable("ResumeButton");
+
         final ImageButton restartButton = new ImageButton(restartButtonStyle);
         final ImageButton infoButton = new ImageButton(infoButtonStyle);
         final ImageButton exitButton = new ImageButton(exitButtonStyle);
+        final ImageButton resumeButton = new ImageButton(exitButtonStyle);
 
         restartButton.setPosition((Gdx.graphics.getWidth() - restartButton.getWidth())/2, (Gdx.graphics.getHeight() - restartButton.getHeight())/2 + 300);
         infoButton.setPosition((Gdx.graphics.getWidth() - infoButton.getWidth())/2, (Gdx.graphics.getHeight() - infoButton.getHeight())/2);
         exitButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/2, (Gdx.graphics.getHeight() - exitButton.getHeight())/2 - 300);
+        resumeButton.setPosition((Gdx.graphics.getWidth() - resumeButton.getWidth())/2, (Gdx.graphics.getHeight() - resumeButton.getHeight())/2 - 400);
 
         restartButton.addListener(new ClickListener() {
             @Override
@@ -78,17 +91,28 @@ public class MenuScreen implements Screen {
                 screenManager.putScreen(RunnerGame.Screen_Type.EXIT);
             }
         });
+        resumeButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                resumeButton.setChecked(false);
+                screenManager.putScreen(RunnerGame.Screen_Type.RESUME);
+            }
+        });
 
         stage.addActor(restartButton);
         stage.addActor(infoButton);
         stage.addActor(exitButton);
-
+        stage.addActor(resumeButton);
     }
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);           //clear screen
+
+        game.batch.begin();
+        game.batch.draw(Bg, -30, 80, Bg.getRegionWidth() * 7.5f, Bg.getRegionHeight() * 7.5f);
+        game.batch.end();
 
         stage.draw();
     }

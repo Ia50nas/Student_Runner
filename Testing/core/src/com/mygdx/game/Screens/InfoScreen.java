@@ -5,17 +5,29 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.RunnerGame;
 import com.mygdx.game.Tools.ScreenManager;
 
 public class InfoScreen implements Screen {
     private  final RunnerGame game;
     private final ScreenManager screenManager;
+    private final Stage stage;
     private final TextureRegion Bg;
+    private Skin crossSkin;
+    private Texture crossTexture;
     public InfoScreen(RunnerGame game , ScreenManager screenManager) {
         this.game =game;
         this.screenManager = screenManager;
         Bg = new TextureRegion(new Texture("Info_Screen.png"));
+        this.stage = new Stage(new ScreenViewport());
+
+        initButtons();
     }
 
     @Override
@@ -31,8 +43,37 @@ public class InfoScreen implements Screen {
         game.batch.begin();
         game.batch.draw(Bg, -30, 80, Bg.getRegionWidth() * 7.5f, Bg.getRegionHeight() * 7.5f);
         game.batch.end();
-    }
 
+        stage.draw();
+    }
+    public void initButtons() {
+        Texture crossTexture = new Texture(Gdx.files.internal("X-cross.png"));
+
+        crossSkin = new Skin();
+
+        crossSkin.add("CrossButton", crossTexture);
+
+
+        ImageButton.ImageButtonStyle crossButtonStyle = new ImageButton.ImageButtonStyle();
+        crossButtonStyle.imageUp = crossSkin.getDrawable("CrossButton");
+
+
+        final ImageButton crossButton = new ImageButton(crossButtonStyle);
+
+
+        crossButton.setPosition(Gdx.graphics.getWidth()/2 - crossButton.getWidth()/2, Gdx.graphics.getHeight()/2 - crossButton.getHeight()/2);
+
+        crossButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                crossButton.setChecked(false);
+                screenManager.putScreen(RunnerGame.Screen_Type.RESUME);
+            }
+        });
+
+
+        stage.addActor(crossButton);
+    }
     @Override
     public void resize(int width, int height) {
 

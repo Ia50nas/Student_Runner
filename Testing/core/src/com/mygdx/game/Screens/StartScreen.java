@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -17,11 +18,15 @@ public class StartScreen implements Screen {
     private final ScreenManager screenManager;
     private final Stage stage;
     private Skin startSkin, infoSkin, exitSkin;
+    private  final RunnerGame game;
+    private  final TextureRegion Bg;
 
-    public StartScreen(ScreenManager screenManager) {
+    public StartScreen(RunnerGame game, ScreenManager screenManager) {
+        this.game = game;
         this.screenManager = screenManager;
         this.stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
+        Bg = new TextureRegion(new Texture("Info_Screen.png"));
 
         initButtons();
     }
@@ -90,6 +95,10 @@ public class StartScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);           //clear screen
+
+        game.batch.begin();
+        game.batch.draw(Bg, -30, 80, Bg.getRegionWidth() * 7.5f, Bg.getRegionHeight() * 7.5f);
+        game.batch.end();
 
         stage.draw();
     }

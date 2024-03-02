@@ -36,10 +36,10 @@ public class ScreenManager {
 
         switch (screenType) {
             case START:
-                currentScreen = new StartScreen(this);
+                currentScreen = new StartScreen(game,this);
                 break;
             case MENU:
-                currentScreen = new MenuScreen(this);
+                currentScreen = new MenuScreen(game,this);
                 break;
             case PLAY:
                 currentScreen = new PlayScreen(game, this);
