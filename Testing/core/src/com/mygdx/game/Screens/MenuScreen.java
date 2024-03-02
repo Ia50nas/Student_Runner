@@ -67,6 +67,7 @@ public class MenuScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 infoButton.setChecked(false);
+                screenManager.putScreen(RunnerGame.Screen_Type.INFO);
             }
         });
 
@@ -93,10 +94,18 @@ public class MenuScreen implements Screen {
     }
     @Override
     public void dispose() {
-        restartSkin.dispose();
-        infoSkin.dispose();
-        exitSkin.dispose();
-        stage.dispose();
+            if (restartSkin!= null) {
+                restartSkin.dispose();
+            }
+            if (infoSkin!= null) {
+                infoSkin.dispose();
+            }
+            if (exitSkin!= null) {
+                exitSkin.dispose();
+            }
+
+            stage.dispose();
+
     }
 
     @Override

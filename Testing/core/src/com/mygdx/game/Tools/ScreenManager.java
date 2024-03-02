@@ -18,7 +18,7 @@ public class ScreenManager {
         this.currentScreen = null;
     }
     public void putScreen(RunnerGame.Screen_Type screenType){
-        if (screenType == RunnerGame.Screen_Type.RESUME || screenType == RunnerGame.Screen_Type.INFO) {
+        if (screenType == RunnerGame.Screen_Type.RESUME) {
             Screen temp = currentScreen;
             currentScreen = previousScreen;
             previousScreen = temp;
@@ -45,7 +45,7 @@ public class ScreenManager {
                 currentScreen = new PlayScreen(game, this);
                 break;
             case INFO:
-                currentScreen = new InfoScreen(this);
+                currentScreen = new InfoScreen(game,this);
                 break;
             case WIN:
             case LOSE:

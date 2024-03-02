@@ -95,9 +95,16 @@ public class StartScreen implements Screen {
     }
     @Override
     public void dispose() {
-        startSkin.dispose();
-        infoSkin.dispose();
-        exitSkin.dispose();
+        if (startSkin!= null) {
+            startSkin.dispose();
+        }
+        if (infoSkin!= null) {
+            infoSkin.dispose();
+        }
+        if (exitSkin!= null) {
+            exitSkin.dispose();
+        }
+
         stage.dispose();
     }
 
