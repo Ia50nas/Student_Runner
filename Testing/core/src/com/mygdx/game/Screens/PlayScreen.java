@@ -48,7 +48,6 @@ public class PlayScreen implements Screen {
     private Runner player;
     private LinkedList<CourseWork> courseWorks;
     private Music music;
-    private boolean wasClicked;
 
     public PlayScreen(RunnerGame game, ScreenManager screenManager) {
         atlas = new TextureAtlas("All.pack");
@@ -84,8 +83,6 @@ public class PlayScreen implements Screen {
         music = RunnerGame.manager.get("audio/music/Runner_Game_Music.wav");
         music.setLooping(true);
         music.play();
-
-        wasClicked = false;
     }
 
     public TextureAtlas getAtlas() {
@@ -93,9 +90,6 @@ public class PlayScreen implements Screen {
     }
 
     public boolean handleInput() {
-        if (!(game.getScreen() instanceof PlayScreen)) return false;
-
-        //if (wasClicked) return;
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
             if (canJump) {
                 player.b2body.applyLinearImpulse(new Vector2(0, 5f), player.b2body.getWorldCenter(), true);
@@ -118,7 +112,7 @@ public class PlayScreen implements Screen {
         player.update(dt);
         hud.update(dt);
         gamecam.position.x = player.b2body.getPosition().x;
-        if(RunnerGame.Level1 == true) {
+        if(RunnerGame.Level1) {
             gamecam.position.y = 12;
         }
 
