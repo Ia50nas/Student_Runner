@@ -18,8 +18,8 @@ public class StartScreen implements Screen {
     private final ScreenManager screenManager;
     private final Stage stage;
     private Skin startSkin, infoSkin, exitSkin;
-    private  final RunnerGame game;
-    private  final TextureRegion Bg;
+    private final RunnerGame game;
+    private final TextureRegion Bg;
 
     public StartScreen(RunnerGame game, ScreenManager screenManager) {
         this.game = game;
@@ -104,6 +104,7 @@ public class StartScreen implements Screen {
     }
     @Override
     public void dispose() {
+
         if (startSkin!= null) {
             startSkin.dispose();
         }
