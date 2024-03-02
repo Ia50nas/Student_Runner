@@ -56,6 +56,7 @@ public class PlayScreen implements Screen {
     public PlayScreen(RunnerGame game, ScreenManager screenManager) {
         atlas = new TextureAtlas("All.pack");
         this.game = game;
+        this.screenManager = screenManager;
         gamecam = new OrthographicCamera();
         gameport = new FitViewport(16 * 100 / RunnerGame.PPM, 16 * 51 / RunnerGame.PPM, gamecam);
         hud = new Hud(game.batch);
