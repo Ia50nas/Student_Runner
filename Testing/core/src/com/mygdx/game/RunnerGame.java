@@ -7,6 +7,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Screens.PlayScreen;
 import com.mygdx.game.Screens.StartScreen;
+import com.mygdx.game.Tools.ScreenManager;
 
 public class RunnerGame extends Game {
 	public static  final int V_WIDTH = 400;//400
@@ -26,15 +27,17 @@ public class RunnerGame extends Game {
 	public static int Score = 0;
 	public static int WorldTimer = 0;
 	public enum Screen_Type {
-		START, MENU, RESUME, GAME, INFO, WIN, LOSE
+		START, MENU, RESUME, PLAY, INFO, WIN, LOSE, EXIT
 	}
 
 	public static AssetManager manager;
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-
 		manager = new AssetManager();
+		ScreenManager screenManager = new ScreenManager(this);
+
+
 		manager.load("audio/music/Runner_Game_Music.wav" , Music.class);
 		manager.load("audio/sounds/Coursework.wav" , Sound.class);
 		manager.load("audio/sounds/fire.wav" , Sound.class);
@@ -44,8 +47,8 @@ public class RunnerGame extends Game {
 		manager.load("audio/sounds/Books.wav", Sound.class);
 		manager.load("audio/sounds/Water.wav", Sound.class);
 		manager.finishLoading();
-		setScreen(new StartScreen(this));
 
+		screenManager.putScreen(Screen_Type.START);
 	}
 
 	@Override

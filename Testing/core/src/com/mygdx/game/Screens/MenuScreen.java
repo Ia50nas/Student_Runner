@@ -11,17 +11,17 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.RunnerGame;
+import com.mygdx.game.Tools.ScreenManager;
 
 public class MenuScreen implements Screen {
-    private final RunnerGame game;
+    private final ScreenManager screenManager;
     private final Stage stage;
     private Skin restartSkin, infoSkin, exitSkin;
 
-    public MenuScreen(RunnerGame game) {
-        this.game = game;
+    public MenuScreen(ScreenManager screenManager) {
+        this.screenManager = screenManager;
         this.stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-
         initButtons();
     }
 
@@ -59,7 +59,7 @@ public class MenuScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 restartButton.setChecked(false);
-                game.setScreen(new PlayScreen(game));
+                screenManager.putScreen(RunnerGame.Screen_Type.PLAY);
             }
         });
 
@@ -67,7 +67,6 @@ public class MenuScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 infoButton.setChecked(false);
-                game.setScreen(new InfoScreen(game));
             }
         });
 
@@ -75,7 +74,7 @@ public class MenuScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 exitButton.setChecked(false);
-                Gdx.app.exit();
+                screenManager.putScreen(RunnerGame.Screen_Type.EXIT);
             }
         });
 

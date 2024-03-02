@@ -24,6 +24,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.RunnerGame;
 import com.mygdx.game.Scenes.Hud;
 import com.mygdx.game.Tools.B2WorldCreator;
+import com.mygdx.game.Tools.ScreenManager;
 import com.mygdx.game.Tools.WorldContactListener;
 
 import java.util.LinkedList;
@@ -33,11 +34,11 @@ import static com.mygdx.game.RunnerGame.canJump;
 
 public class PlayScreen implements Screen {
     private RunnerGame game;
+    private ScreenManager screenManager;
     private TextureAtlas atlas;
     private OrthographicCamera gamecam;
     private Viewport gameport;
     private Hud hud;
-
     private TmxMapLoader maploader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
@@ -52,7 +53,7 @@ public class PlayScreen implements Screen {
 
 
 
-    public PlayScreen(RunnerGame game) {
+    public PlayScreen(RunnerGame game, ScreenManager screenManager) {
         atlas = new TextureAtlas("All.pack");
         this.game = game;
         gamecam = new OrthographicCamera();
@@ -108,10 +109,8 @@ public class PlayScreen implements Screen {
             player.b2body.applyLinearImpulse(new Vector2(0.3f, 0), player.b2body.getWorldCenter(), true);
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
             player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0), player.b2body.getWorldCenter(), true);
-
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
-            //this.dispose();
-            game.setScreen(new MenuScreen(game));
+            screenManager.putScreen(RunnerGame.Screen_Type.MENU);
         }
     }
 

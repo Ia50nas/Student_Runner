@@ -2,13 +2,13 @@ package com.mygdx.game.Screens;
 
 import com.badlogic.gdx.Screen;
 import com.mygdx.game.RunnerGame;
+import com.mygdx.game.Tools.ScreenManager;
 
 public class InfoScreen implements Screen {
+    private ScreenManager screenManager;
 
-    private RunnerGame game;
-
-    public InfoScreen(RunnerGame game) {
-        this.game = game;
+    public InfoScreen(ScreenManager screenManager) {
+        this.screenManager = screenManager;
     }
 
     @Override
