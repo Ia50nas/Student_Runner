@@ -40,7 +40,6 @@ public class StartScreen implements Screen {
         infoSkin = new Skin();
         exitSkin = new Skin();
 
-
         startSkin.add("StartButton", startTexture);
         infoSkin.add("InfoButton", infoTexture);
         exitSkin.add("ExitButton", exitTexture);
@@ -100,6 +99,7 @@ public class StartScreen implements Screen {
         game.batch.draw(Bg, -30, 80, Bg.getRegionWidth() * 7.5f, Bg.getRegionHeight() * 7.5f);
         game.batch.end();
 
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }
     @Override

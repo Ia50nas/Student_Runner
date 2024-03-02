@@ -8,7 +8,7 @@ import com.mygdx.game.Screens.MenuScreen;
 import com.mygdx.game.Screens.PlayScreen;
 import com.mygdx.game.Screens.StartScreen;
 
-public class ScreenManager {
+public final class ScreenManager {
     private final RunnerGame game;
     private Screen previousScreen;
     private Screen currentScreen;
@@ -23,6 +23,7 @@ public class ScreenManager {
             currentScreen = previousScreen;
             previousScreen = temp;
             game.setScreen(currentScreen);
+            currentScreen.resume();
             return;
         }
 
@@ -39,6 +40,7 @@ public class ScreenManager {
                 currentScreen = new StartScreen(game,this);
                 break;
             case MENU:
+                assert currentScreen != null;
                 currentScreen = new MenuScreen(game,this);
                 break;
             case PLAY:
@@ -48,7 +50,9 @@ public class ScreenManager {
                 currentScreen = new InfoScreen(game,this);
                 break;
             case WIN:
+                break;
             case LOSE:
+                break;
             case EXIT:
                 Gdx.app.exit();
                 break;

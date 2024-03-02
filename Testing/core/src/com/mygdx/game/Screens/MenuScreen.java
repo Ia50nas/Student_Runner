@@ -26,8 +26,9 @@ public class MenuScreen implements Screen {
         this.screenManager = screenManager;
         this.stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-        initButtons();
         Bg = new TextureRegion(new Texture("Info_Screen.png"));
+
+        initButtons();
     }
 
     public void initButtons() {
@@ -63,9 +64,9 @@ public class MenuScreen implements Screen {
         final ImageButton exitButton = new ImageButton(exitButtonStyle);
         final ImageButton resumeButton = new ImageButton(exitButtonStyle);
 
-        restartButton.setPosition((Gdx.graphics.getWidth() - restartButton.getWidth())/2, (Gdx.graphics.getHeight() - restartButton.getHeight())/2 + 300);
+        restartButton.setPosition((Gdx.graphics.getWidth() - restartButton.getWidth())/2, (Gdx.graphics.getHeight() - restartButton.getHeight())/2 + 200);
         infoButton.setPosition((Gdx.graphics.getWidth() - infoButton.getWidth())/2, (Gdx.graphics.getHeight() - infoButton.getHeight())/2);
-        exitButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/2, (Gdx.graphics.getHeight() - exitButton.getHeight())/2 - 300);
+        exitButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/2, (Gdx.graphics.getHeight() - exitButton.getHeight())/2 - 200);
         resumeButton.setPosition((Gdx.graphics.getWidth() - resumeButton.getWidth())/2, (Gdx.graphics.getHeight() - resumeButton.getHeight())/2 - 400);
 
         restartButton.addListener(new ClickListener() {
@@ -114,22 +115,25 @@ public class MenuScreen implements Screen {
         game.batch.draw(Bg, -30, 80, Bg.getRegionWidth() * 7.5f, Bg.getRegionHeight() * 7.5f);
         game.batch.end();
 
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }
     @Override
     public void dispose() {
-            if (restartSkin!= null) {
-                restartSkin.dispose();
-            }
-            if (infoSkin!= null) {
-                infoSkin.dispose();
-            }
-            if (exitSkin!= null) {
-                exitSkin.dispose();
-            }
+        if (restartSkin!= null) {
+            restartSkin.dispose();
+        }
+        if (infoSkin!= null) {
+            infoSkin.dispose();
+        }
+        if (exitSkin!= null) {
+            exitSkin.dispose();
+        }
+        if (resumeSkin!= null) {
+            resumeSkin.dispose();
+        }
 
-            stage.dispose();
-
+        stage.dispose();
     }
 
     @Override

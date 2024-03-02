@@ -20,19 +20,14 @@ public class InfoScreen implements Screen {
     private final Stage stage;
     private final TextureRegion Bg;
     private Skin crossSkin;
-    private Texture crossTexture;
-    public InfoScreen(RunnerGame game , ScreenManager screenManager) {
+    public InfoScreen(RunnerGame game, ScreenManager screenManager) {
         this.game =game;
         this.screenManager = screenManager;
-        Bg = new TextureRegion(new Texture("Info_Screen.png"));
         this.stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
+        Bg = new TextureRegion(new Texture("Info_Screen.png"));
 
         initButtons();
-    }
-
-    @Override
-    public void show() {
-
     }
 
     @Override
@@ -44,10 +39,11 @@ public class InfoScreen implements Screen {
         game.batch.draw(Bg, -30, 80, Bg.getRegionWidth() * 7.5f, Bg.getRegionHeight() * 7.5f);
         game.batch.end();
 
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }
     public void initButtons() {
-        Texture crossTexture = new Texture(Gdx.files.internal("X-cross.png"));
+        Texture crossTexture = new Texture(Gdx.files.internal("Buttons/X-cross.png"));
 
         crossSkin = new Skin();
 
@@ -67,7 +63,7 @@ public class InfoScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 crossButton.setChecked(false);
-                screenManager.putScreen(RunnerGame.Screen_Type.RESUME);
+                screenManager.putScreen(RunnerGame.Screen_Type.PLAY);
             }
         });
 
@@ -75,27 +71,31 @@ public class InfoScreen implements Screen {
         stage.addActor(crossButton);
     }
     @Override
+    public void dispose() {
+        if (crossSkin!= null) {
+            crossSkin.dispose();
+        }
+
+        stage.dispose();
+    }
+    @Override
+    public void show() {
+
+    }
+    @Override
     public void resize(int width, int height) {
 
     }
-
     @Override
     public void pause() {
 
     }
-
     @Override
     public void resume() {
 
     }
-
     @Override
     public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
 
     }
 }

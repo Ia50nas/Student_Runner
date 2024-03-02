@@ -31,7 +31,6 @@ import java.util.LinkedList;
 
 import static com.mygdx.game.RunnerGame.canJump;
 
-
 public class PlayScreen implements Screen {
     private RunnerGame game;
     private ScreenManager screenManager;
@@ -47,16 +46,15 @@ public class PlayScreen implements Screen {
     private World world;
     private Box2DDebugRenderer b2dr;
     private Runner player;
-
     private LinkedList<CourseWork> courseWorks;
     private Music music;
-
-
+    private boolean wasClicked;
 
     public PlayScreen(RunnerGame game, ScreenManager screenManager) {
         atlas = new TextureAtlas("All.pack");
         this.game = game;
         this.screenManager = screenManager;
+        Gdx.input.setInputProcessor(null);
         gamecam = new OrthographicCamera();
         gameport = new FitViewport(16 * 100 / RunnerGame.PPM, 16 * 51 / RunnerGame.PPM, gamecam);
         hud = new Hud(game.batch);
@@ -87,19 +85,17 @@ public class PlayScreen implements Screen {
         music.setLooping(true);
         music.play();
 
+        wasClicked = false;
     }
 
     public TextureAtlas getAtlas() {
         return atlas;
     }
 
-    @Override
-    public void show() {
+    public boolean handleInput() {
+        if (!(game.getScreen() instanceof PlayScreen)) return false;
 
-    }
-
-
-    public void handleInput(float dt) {
+        //if (wasClicked) return;
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
             if (canJump) {
                 player.b2body.applyLinearImpulse(new Vector2(0, 5f), player.b2body.getWorldCenter(), true);
@@ -113,10 +109,11 @@ public class PlayScreen implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             screenManager.putScreen(RunnerGame.Screen_Type.MENU);
         }
+        return true;
     }
 
     public void update(float dt) {
-        handleInput(dt);
+        handleInput();
         world.step(1 / 60f, 6, 2);
         player.update(dt);
         hud.update(dt);
@@ -208,16 +205,16 @@ public class PlayScreen implements Screen {
         return player;
     }
 
+    @Override
+    public void show() {
 
+    }
     @Override
     public void pause() {
 
     }
-
     @Override
-    public void resume() {
-
-    }
+    public void resume() { Gdx.input.setInputProcessor(null); }
 
     @Override
     public void hide() {
