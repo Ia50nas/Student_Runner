@@ -27,7 +27,6 @@ public class StartScreen implements Screen {
         this.stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
         Bg = new TextureRegion(new Texture("Main_Screen.png"));
-
         initButtons();
     }
 
@@ -96,7 +95,7 @@ public class StartScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);           //clear screen
 
         game.batch.begin();
-        game.batch.draw(Bg, 0, 0, 2000 , 1000 );
+        game.batch.draw(Bg, -30, 80, Bg.getRegionWidth() * 1f, Bg.getRegionHeight() * 1f);
         game.batch.end();
 
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));

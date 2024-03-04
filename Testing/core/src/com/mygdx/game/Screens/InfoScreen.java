@@ -36,7 +36,7 @@ public class InfoScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);           //clear screen
 
         game.batch.begin();
-        game.batch.draw(Bg, -30, 80, Bg.getRegionWidth() * 7.5f, Bg.getRegionHeight() * 7.5f);
+        game.batch.draw(Bg, -30, 80, Bg.getRegionWidth() * 8f, Bg.getRegionHeight() * 4f);
         game.batch.end();
 
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
