@@ -20,6 +20,6 @@ public class Fire extends InteractiveTileObject {
         Gdx.app.log("Fire", "Collision");
 
         Hud.addScore(-10);
-        RunnerGame.manager.get("audio/sounds/fire.wav", Sound.class).play();
+        RunnerGame.manager.get("audio/sounds/fire.mp3", Sound.class).play();
     }
 }

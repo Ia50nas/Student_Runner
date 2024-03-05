@@ -58,7 +58,7 @@ public class CourseWork extends InteractiveTileObject{
         setCategoryFilter(RunnerGame.DESTROYED_BIT);
         playScreen.removeCourseWork(this);
         Hud.addScore(20);
-        RunnerGame.manager.get("audio/sounds/Coursework.wav", Sound.class).play();
+        RunnerGame.manager.get("audio/sounds/Coursework.mp3", Sound.class).play();
     }
 
 
