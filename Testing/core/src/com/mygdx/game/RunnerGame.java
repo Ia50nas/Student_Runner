@@ -20,16 +20,17 @@ public class RunnerGame extends Game {
 	public  static  final  short COURSEWORK_BIT = 8;
 	public static final short DESTROYED_BIT = 16;
 	public SpriteBatch batch;
-	public static boolean Level1 = false;
+	public static boolean Level1 = true;
 	public static boolean Level2 = false;
-	public static boolean Level3 = true;
+	public static boolean Level3 = false;
 	public static boolean canJump = true;
 	public static int Score = 0;
 	public static int WorldTimer = 0;
 	public enum Screen_Type {
 		START, MENU, RESUME, PLAY, INFO, WIN, LOSE, EXIT
 	}
-
+	public static float HORIZONTAL_SPEED = 0.5f;
+	public static float VERTICAL_SPEED = 5f;
 	public enum Power_Up {
 		None, Speed, DoubleJUmp, BigJump
 	}
