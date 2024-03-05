@@ -36,12 +36,12 @@ public class CourseWork extends InteractiveTileObject{
         this.y = bounds.getY() / RunnerGame.PPM;
         this.playScreen = playScreen;
 
-        if(Level1 ) {
-            region = new TextureRegion(new Texture(Gdx.files.internal("Coursework.png")));
+        if(Level1) {
+            region = new TextureRegion(new Texture(Gdx.files.internal("Tilemaps/Coursework.png")));
         } else if (Level2) {
-            region = new TextureRegion(new Texture(Gdx.files.internal("Coursework_L2.png")));
+            region = new TextureRegion(new Texture(Gdx.files.internal("Tilemaps/Coursework_L2.png")));
         } else if (Level3) {
-            region = new TextureRegion(new Texture(Gdx.files.internal("CourseworkMarked.png")));
+            region = new TextureRegion(new Texture(Gdx.files.internal("Tilemaps/CourseworkMarked.png")));
         }
 
     }
@@ -58,7 +58,7 @@ public class CourseWork extends InteractiveTileObject{
         setCategoryFilter(RunnerGame.DESTROYED_BIT);
         playScreen.removeCourseWork(this);
         Hud.addScore(20);
-        RunnerGame.manager.get("audio/sounds/Coursework.mp3", Sound.class).play();
+        RunnerGame.manager.get("Audio/sounds/Coursework.mp3", Sound.class).play();
     }
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="750" height="88" tilewidth="16" tileheight="16" infinite="0" nextlayerid="30" nextobjectid="314">
  <tileset firstgid="1" source="Town_Map.tsx"/>
- <tileset firstgid="1157" source="air_map.tsx"/>
+ <tileset firstgid="1157" source="Air_map.tsx"/>
  <tileset firstgid="2313" source="Cone.tsx"/>
  <tileset firstgid="2318" source="Binary.tsx"/>
  <tileset firstgid="4240" source="Portal.tsx"/>
@@ -34,7 +34,7 @@
  <tileset firstgid="15212" source="James_Office.tsx"/>
  <tileset firstgid="15812" source="Books.tsx"/>
  <tileset firstgid="15813" source="Wet_Floor.tsx"/>
- <tileset firstgid="15829" source="water.tsx"/>
+ <tileset firstgid="15829" source="Water.tsx"/>
  <tileset firstgid="15830" source="James.tsx"/>
  <layer id="1" name="Background" width="750" height="88">
   <data encoding="base64" compression="zlib">

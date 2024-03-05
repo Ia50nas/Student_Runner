@@ -19,6 +19,6 @@ public class Water extends InteractiveTileObject {
     public void onHeadHit() {
         Gdx.app.log("Water", "Collision");
         Hud.addScore(-5);
-        RunnerGame.manager.get("audio/sounds/Water.mp3", Sound.class).play(100);
+        RunnerGame.manager.get("Audio/sounds/Water.mp3", Sound.class).play(100);
     }
 }

@@ -18,8 +18,7 @@ public class Fire extends InteractiveTileObject {
     @Override
     public void onHeadHit() {
         Gdx.app.log("Fire", "Collision");
-
         Hud.addScore(-10);
-        RunnerGame.manager.get("audio/sounds/fire.mp3", Sound.class).play();
+        RunnerGame.manager.get("Audio/sounds/Fire.mp3", Sound.class).play();
     }
 }

@@ -26,7 +26,7 @@ public class MenuScreen implements Screen {
         this.screenManager = screenManager;
         this.stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-        Bg = new TextureRegion(new Texture("Menu_Screen.png"));
+        Bg = new TextureRegion(new Texture("Art/Menu_Screen.png"));
 
         initButtons();
     }

@@ -67,7 +67,7 @@ public class Hud implements Disposable {
             RunnerLabel = new Label("Diver", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         } else if (Level3) {
             levelLabel = new Label("Level 3", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-            worldLabel = new Label("Lancaster Corridor's", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+            worldLabel = new Label("Lancaster's Corridor", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
             RunnerLabel = new Label("Student", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         }
 

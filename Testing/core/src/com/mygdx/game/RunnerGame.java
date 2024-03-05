@@ -37,17 +37,16 @@ public class RunnerGame extends Game {
 		manager = new AssetManager();
 		ScreenManager screenManager = new ScreenManager(this);
 
-
-		manager.load("audio/music/Runner_Game_Music.mp3" , Music.class);
-		manager.load("audio/sounds/Coursework.mp3" , Sound.class);
-		manager.load("audio/sounds/fire.mp3" , Sound.class);
-		manager.load("audio/sounds/Game_hit.mp3" , Sound.class);
-		manager.load("audio/sounds/Mine_Hit.mp3", Sound.class);
-		manager.load("audio/sounds/Urchin_Hit.mp3", Sound.class);
-		manager.load("audio/sounds/Books.mp3", Sound.class);
-		manager.load("audio/sounds/Water.mp3", Sound.class);
-		manager.load("audio/sounds/Win_Sound.mp3", Sound.class);
-		manager.load("audio/sounds/Lose.mp3", Sound.class);
+		manager.load("Audio/music/Runner_Game_Music.mp3" , Music.class);
+		manager.load("Audio/sounds/Coursework.mp3" , Sound.class);
+		manager.load("Audio/sounds/Fire.mp3" , Sound.class);
+		manager.load("Audio/sounds/Game_hit.mp3" , Sound.class);
+		manager.load("Audio/sounds/Mine_Hit.mp3", Sound.class);
+		manager.load("Audio/sounds/Urchin_Hit.mp3", Sound.class);
+		manager.load("Audio/sounds/Books.mp3", Sound.class);
+		manager.load("Audio/sounds/Water.mp3", Sound.class);
+		manager.load("Audio/sounds/Win_Sound.mp3", Sound.class);
+		manager.load("Audio/sounds/Lose.mp3", Sound.class);
 		manager.finishLoading();
 
 		screenManager.putScreen(Screen_Type.START);

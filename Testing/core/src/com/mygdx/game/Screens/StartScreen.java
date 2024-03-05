@@ -26,7 +26,7 @@ public class StartScreen implements Screen {
         this.screenManager = screenManager;
         this.stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-        Bg = new TextureRegion(new Texture("Main_Screen.png"));
+        Bg = new TextureRegion(new Texture("Art/Main_Screen.png"));
         initButtons();
     }
 
