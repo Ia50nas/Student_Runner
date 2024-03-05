@@ -26,16 +26,16 @@ public class MenuScreen implements Screen {
         this.screenManager = screenManager;
         this.stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-        Bg = new TextureRegion(new Texture("Info_Screen.png"));
+        Bg = new TextureRegion(new Texture("Menu_Screen.png"));
 
         initButtons();
     }
 
     public void initButtons() {
-        Texture restartTexture = new Texture(Gdx.files.internal("Buttons/Start.png"));
+        Texture restartTexture = new Texture(Gdx.files.internal("Buttons/Restart.png"));
         Texture infoTexture = new Texture(Gdx.files.internal("Buttons/Info.png"));
         Texture exitTexture = new Texture(Gdx.files.internal("Buttons/Exit.png"));
-        Texture resumeTexture = new Texture(Gdx.files.internal("Buttons/Exit.png"));
+        Texture resumeTexture = new Texture(Gdx.files.internal("Buttons/Resume.png"));
 
         restartSkin = new Skin();
         infoSkin = new Skin();
@@ -57,31 +57,22 @@ public class MenuScreen implements Screen {
         exitButtonStyle.imageUp = exitSkin.getDrawable("ExitButton");
 
         ImageButton.ImageButtonStyle resumeButtonStyle = new ImageButton.ImageButtonStyle();
-        exitButtonStyle.imageUp = resumeSkin.getDrawable("ResumeButton");
+        resumeButtonStyle.imageUp = resumeSkin.getDrawable("ResumeButton");
 
         final ImageButton restartButton = new ImageButton(restartButtonStyle);
         final ImageButton infoButton = new ImageButton(infoButtonStyle);
         final ImageButton exitButton = new ImageButton(exitButtonStyle);
-        final ImageButton resumeButton = new ImageButton(exitButtonStyle);
+        final ImageButton resumeButton = new ImageButton(resumeButtonStyle);
 
         restartButton.setPosition((Gdx.graphics.getWidth() - restartButton.getWidth())/2, (Gdx.graphics.getHeight() - restartButton.getHeight())/2 + 200);
-        infoButton.setPosition((Gdx.graphics.getWidth() - infoButton.getWidth())/2, (Gdx.graphics.getHeight() - infoButton.getHeight())/2);
         exitButton.setPosition((Gdx.graphics.getWidth() - exitButton.getWidth())/2, (Gdx.graphics.getHeight() - exitButton.getHeight())/2 - 200);
-        resumeButton.setPosition((Gdx.graphics.getWidth() - resumeButton.getWidth())/2, (Gdx.graphics.getHeight() - resumeButton.getHeight())/2 - 400);
+        resumeButton.setPosition((Gdx.graphics.getWidth() - resumeButton.getWidth())/2, (Gdx.graphics.getHeight() - resumeButton.getHeight())/2 );
 
         restartButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 restartButton.setChecked(false);
                 screenManager.putScreen(RunnerGame.Screen_Type.PLAY);
-            }
-        });
-
-        infoButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                infoButton.setChecked(false);
-                screenManager.putScreen(RunnerGame.Screen_Type.INFO);
             }
         });
 
@@ -101,9 +92,8 @@ public class MenuScreen implements Screen {
         });
 
         stage.addActor(restartButton);
-        stage.addActor(infoButton);
-        stage.addActor(exitButton);
         stage.addActor(resumeButton);
+        stage.addActor(exitButton);
     }
 
     @Override
@@ -112,7 +102,7 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);           //clear screen
 
         game.batch.begin();
-        game.batch.draw(Bg, -30, 80, Bg.getRegionWidth() * 7.5f, Bg.getRegionHeight() * 7.5f);
+        game.batch.draw(Bg, 0, 0, Bg.getRegionWidth() * 1.6f, Bg.getRegionHeight() * 0.8f);
         game.batch.end();
 
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
@@ -123,9 +113,7 @@ public class MenuScreen implements Screen {
         if (restartSkin!= null) {
             restartSkin.dispose();
         }
-        if (infoSkin!= null) {
-            infoSkin.dispose();
-        }
+
         if (exitSkin!= null) {
             exitSkin.dispose();
         }

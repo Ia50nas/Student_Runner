@@ -3,10 +3,7 @@ package com.mygdx.game.Tools;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.mygdx.game.RunnerGame;
-import com.mygdx.game.Screens.InfoScreen;
-import com.mygdx.game.Screens.MenuScreen;
-import com.mygdx.game.Screens.PlayScreen;
-import com.mygdx.game.Screens.StartScreen;
+import com.mygdx.game.Screens.*;
 
 public final class ScreenManager {
     private final RunnerGame game;
@@ -50,8 +47,10 @@ public final class ScreenManager {
                 currentScreen = new InfoScreen(game,this);
                 break;
             case WIN:
+                currentScreen = new WinScreen(game,this);
                 break;
             case LOSE:
+                currentScreen = new LoseScreen(game,this);
                 break;
             case EXIT:
                 Gdx.app.exit();
