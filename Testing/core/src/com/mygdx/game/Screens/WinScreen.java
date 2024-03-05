@@ -28,11 +28,8 @@ public class WinScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
         Bg = new TextureRegion(new Texture("Art/Win_Screen.png"));
 
-<<<<<<< Updated upstream
-        RunnerGame.manager.get("audio/sounds/Win_Sound.wav", Sound.class).play();
-=======
         RunnerGame.manager.get("Audio/sounds/Win_Sound.mp3", Sound.class).play();
->>>>>>> Stashed changes
+
         initButtons();
     }
 

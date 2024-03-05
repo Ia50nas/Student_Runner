@@ -19,10 +19,6 @@ public class Urchin extends InteractiveTileObject {
     public void onHeadHit() {
         Gdx.app.log("Urchin", "Collision");
         Hud.addScore(-20);
-<<<<<<< Updated upstream
-        RunnerGame.manager.get("audio/sounds/Urchin_Hit.wav", Sound.class).play();
-=======
         RunnerGame.manager.get("Audio/sounds/Urchin_Hit.mp3", Sound.class).play();
->>>>>>> Stashed changes
     }
 }

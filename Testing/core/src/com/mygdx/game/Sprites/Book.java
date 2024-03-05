@@ -19,10 +19,6 @@ public class Book extends InteractiveTileObject {
     public void onHeadHit() {
         Gdx.app.log("Book", "Collision");
         Hud.addScore(-5);
-<<<<<<< Updated upstream
-        RunnerGame.manager.get("audio/sounds/Books.wav", Sound.class).play(75);
-=======
         RunnerGame.manager.get("Audio/sounds/Books.mp3", Sound.class).play(75);
->>>>>>> Stashed changes
     }
 }
