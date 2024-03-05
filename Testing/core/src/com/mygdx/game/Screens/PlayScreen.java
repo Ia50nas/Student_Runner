@@ -80,6 +80,7 @@ public class PlayScreen implements Screen {
         world.setContactListener(new WorldContactListener());
 
         //Play in loop the main theme song of the game
+
         music = RunnerGame.manager.get("Audio/music/Runner_Game_Music.mp3");
         music.setLooping(true);
         music.play();

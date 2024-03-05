@@ -20,5 +20,6 @@ public class Book extends InteractiveTileObject {
         Gdx.app.log("Book", "Collision");
         Hud.addScore(-5);
         RunnerGame.manager.get("Audio/sounds/Books.mp3", Sound.class).play(75);
+
     }
 }
