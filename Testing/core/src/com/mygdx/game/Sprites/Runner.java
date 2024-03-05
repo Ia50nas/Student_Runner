@@ -141,7 +141,7 @@ public class Runner extends Sprite {
         } else if (Level2) {
             bdef.position.set(1,1);    // test (60,1)
         } else if (Level3) {
-            bdef.position.set(89, 9);
+            bdef.position.set(89, 9);   //(88, 6)
         }
 
         bdef.type = BodyDef.BodyType.DynamicBody;
