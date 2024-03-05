@@ -19,6 +19,10 @@ public class Mine extends InteractiveTileObject {
     public void onHeadHit() {
         Gdx.app.log("Mine", "Collision");
         Hud.addScore(-20);
+<<<<<<< Updated upstream
         RunnerGame.manager.get("audio/sounds/Mine_Hit.wav", Sound.class).play(100);
+=======
+        RunnerGame.manager.get("Audio/sounds/Mine_Hit.mp3", Sound.class).play(100);
+>>>>>>> Stashed changes
     }
 }

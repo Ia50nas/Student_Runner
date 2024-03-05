@@ -19,6 +19,10 @@ public class Cone extends InteractiveTileObject {
     public void onHeadHit() {
         Gdx.app.log("Cone", "Collision");
         Hud.addScore(-5);
+<<<<<<< Updated upstream
         RunnerGame.manager.get("audio/sounds/Game_hit.wav", Sound.class).play();
+=======
+        RunnerGame.manager.get("Audio/sounds/Game_hit.mp3", Sound.class).play();
+>>>>>>> Stashed changes
     }
 }

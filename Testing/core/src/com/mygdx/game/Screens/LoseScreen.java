@@ -26,9 +26,13 @@ public class LoseScreen implements Screen {
         this.screenManager = screenManager;
         this.stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-        Bg = new TextureRegion(new Texture("Lose_Screen.png"));
+        Bg = new TextureRegion(new Texture("Art/Lose_Screen.png"));
 
+<<<<<<< Updated upstream
         RunnerGame.manager.get("audio/sounds/Lose.wav", Sound.class).play();
+=======
+        RunnerGame.manager.get("Audio/sounds/Lose.mp3", Sound.class).play();
+>>>>>>> Stashed changes
         initButtons();
     }
 

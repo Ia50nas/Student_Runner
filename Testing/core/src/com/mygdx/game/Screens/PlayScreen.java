@@ -50,7 +50,7 @@ public class PlayScreen implements Screen {
     private Music music;
 
     public PlayScreen(RunnerGame game, ScreenManager screenManager) {
-        atlas = new TextureAtlas("All.pack");
+        atlas = new TextureAtlas("Tilemaps/All.pack");
         this.game = game;
         this.screenManager = screenManager;
         Gdx.input.setInputProcessor(null);
@@ -61,7 +61,7 @@ public class PlayScreen implements Screen {
         courseWorks = new LinkedList<>();
         //Load map
         maploader = new TmxMapLoader();
-        map = maploader.load("Town2.tmx");
+        map = maploader.load("Tilemaps/Town2.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / RunnerGame.PPM);
     
         //Center camera at the start
@@ -80,7 +80,11 @@ public class PlayScreen implements Screen {
         world.setContactListener(new WorldContactListener());
 
         //Play in loop the main theme song of the game
+<<<<<<< Updated upstream
         music = RunnerGame.manager.get("audio/music/Runner_Game_Music.wav");
+=======
+        music = RunnerGame.manager.get("Audio/music/Runner_Game_Music.mp3");
+>>>>>>> Stashed changes
         music.setLooping(true);
         music.play();
     }

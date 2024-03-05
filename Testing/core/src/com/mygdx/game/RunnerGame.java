@@ -38,6 +38,7 @@ public class RunnerGame extends Game {
 		ScreenManager screenManager = new ScreenManager(this);
 
 
+<<<<<<< Updated upstream
 		manager.load("audio/music/Runner_Game_Music.wav" , Music.class);
 		manager.load("audio/sounds/Coursework.wav" , Sound.class);
 		manager.load("audio/sounds/fire.wav" , Sound.class);
@@ -48,6 +49,18 @@ public class RunnerGame extends Game {
 		manager.load("audio/sounds/Water.wav", Sound.class);
 		manager.load("audio/sounds/Win_Sound.wav", Sound.class);
 		manager.load("audio/sounds/Lose.wav", Sound.class);
+=======
+		manager.load("Audio/music/Runner_Game_Music.mp3" , Music.class);
+		manager.load("Audio/sounds/Coursework.mp3" , Sound.class);
+		manager.load("Audio/sounds/fire.mp3" , Sound.class);
+		manager.load("Audio/sounds/Game_hit.mp3" , Sound.class);
+		manager.load("Audio/sounds/Mine_Hit.mp3", Sound.class);
+		manager.load("Audio/sounds/Urchin_Hit.mp3", Sound.class);
+		manager.load("Audio/sounds/Books.mp3", Sound.class);
+		manager.load("Audio/sounds/Water.mp3", Sound.class);
+		manager.load("Audio/sounds/Win_Sound.mp3", Sound.class);
+		manager.load("Audio/sounds/Lose.mp3", Sound.class);
+>>>>>>> Stashed changes
 		manager.finishLoading();
 
 		screenManager.putScreen(Screen_Type.START);
