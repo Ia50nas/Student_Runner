@@ -140,15 +140,27 @@ public class PlayScreen implements Screen {
         if(RunnerGame.Level3){
             gamecam.position.y = player.b2body.getPosition().y;
         }
-        if (RunnerGame.Level3 && player.b2body.getPosition().x < 85 ){
-            if(hud.score > 500){
-                music.stop();
-                screenManager.putScreen(RunnerGame.Screen_Type.WIN);
-            }else{
-                music.stop();
-                screenManager.putScreen(RunnerGame.Screen_Type.LOSE);
+
+        if (RunnerGame.Level3 && player.b2body.getPosition().x < 85 ) {
+            if (hud.worldTimer > 0) {
+                if (hud.score > 500) {
+                    music.stop();
+                    screenManager.putScreen(RunnerGame.Screen_Type.WIN);
+                } else {
+                    music.stop();
+                    screenManager.putScreen(RunnerGame.Screen_Type.LOSE);
+                }
+            } else {
+                if ((hud.score -40*hud.score/100) > 500) {
+                    music.stop();
+                    screenManager.putScreen(RunnerGame.Screen_Type.WIN);
+                } else {
+                    music.stop();
+                    screenManager.putScreen(RunnerGame.Screen_Type.LOSE);
+                }
             }
         }
+
 
 
         gamecam.update();
