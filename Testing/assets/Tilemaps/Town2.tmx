@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="750" height="88" tilewidth="16" tileheight="16" infinite="0" nextlayerid="30" nextobjectid="418">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="750" height="88" tilewidth="16" tileheight="16" infinite="0" nextlayerid="30" nextobjectid="420">
  <tileset firstgid="1" source="Town_Map.tsx"/>
  <tileset firstgid="1157" source="Air_map.tsx"/>
  <tileset firstgid="2313" source="Cone.tsx"/>
@@ -236,6 +236,8 @@
   <object id="384" x="11136.7" y="1056.67" width="16" height="224"/>
   <object id="385" x="10946" y="1186.67" width="16" height="109.333"/>
   <object id="386" x="10880" y="1185.33" width="16" height="174.667"/>
+  <object id="418" x="11023.3" y="1057.33" width="16" height="142"/>
+  <object id="419" x="10289.3" y="1058" width="16" height="142"/>
  </objectgroup>
  <objectgroup id="9" name="Car">
   <object id="45" x="3534.75" y="466.75" width="227.5" height="40.75"/>

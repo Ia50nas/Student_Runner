@@ -31,7 +31,7 @@ public class RunnerGame extends Game {
 		START, MENU, RESUME, PLAY, INFO, WIN, LOSE, EXIT
 	}
 
-	public static float HORIZONTAL_SPEED = 0.5f;
+	public static float HORIZONTAL_SPEED = 3f;
 	public static float VERTICAL_SPEED = 5f;
 
 	public static AssetManager manager;

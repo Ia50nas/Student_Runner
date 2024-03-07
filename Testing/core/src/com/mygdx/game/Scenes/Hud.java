@@ -37,7 +37,7 @@ public class Hud implements Disposable {
         // initialize the variables and update in each stage
         if(Level1){
             score = 0;
-            worldTimer = 300;
+            worldTimer = 200;
         } else if (Level2) {
             score = Score;
             worldTimer = WorldTimer;

@@ -159,6 +159,7 @@ public class Runner extends Sprite {
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
         shape.setRadius(6 / RunnerGame.PPM);
+        fdef.friction = 0;
         fdef.filter.categoryBits = RunnerGame.RUNNER_BIT;
         fdef.filter.maskBits = RunnerGame.DEFAULT_BIT | RunnerGame.COURSEWORK_BIT | RunnerGame.BRICK_BIT;
 
@@ -169,6 +170,7 @@ public class Runner extends Sprite {
         head.set(new Vector2(-2/RunnerGame.PPM,7/RunnerGame.PPM), new Vector2(7/RunnerGame.PPM,5/RunnerGame.PPM));
         fdef.shape = head;
         fdef.isSensor = true;
+        fdef.friction = 0;
 
         b2body.createFixture(fdef).setUserData("head");
 
