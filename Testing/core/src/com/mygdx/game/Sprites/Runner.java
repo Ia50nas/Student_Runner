@@ -27,11 +27,11 @@ public class Runner extends Sprite {
         this.world = world;
         CurrentState = State.STANDING;
         PreviousState = State.STANDING;
-        stateTimer = 0;
         RunningRight = true;
 
+        //Running animations for each one of the maps
     Array<TextureRegion> frames = new Array<TextureRegion>();
-        if(Level1 || Level3) {
+        if(Level1) {
             frames.add(new TextureRegion(getTexture(), 1, 42, 17, 17));
             frames.add(new TextureRegion(getTexture(), 1, 23, 17, 17));
             frames.add(new TextureRegion(getTexture(), 67, 42, 17, 17));
@@ -51,7 +51,7 @@ public class Runner extends Sprite {
         frames.clear();
 
 
-
+        //Jumping animations for each one of the maps
         if(Level1 ) {
             frames.add(new TextureRegion(getTexture(), 1, 42, 17, 17));
             RunnerJump = new Animation(0.1f, frames);
@@ -66,6 +66,7 @@ public class Runner extends Sprite {
         }
         defineRunner();
 
+        //Standing still animations for each one of the maps
         if(Level1) {
             frames.add(new TextureRegion(getTexture(), 155, 8, 16,17));
             RunnerStand = new TextureRegion(getTexture(), 155, 8, 17, 17);
@@ -86,14 +87,17 @@ public class Runner extends Sprite {
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight()/2);
         setRegion(getFrame(dt));
 
+        //Print position of player for debugging purpose
         System.out.println("Player Position: (" + b2body.getPosition().x + ", " + b2body.getPosition().y + ")");
 
     }
 
+
     private TextureRegion getFrame(float dt) {
         CurrentState = getState();
-
         TextureRegion region;
+
+        //Current action state of the runner
         switch (CurrentState){
             case JUMPING:
                 region = (TextureRegion) RunnerJump.getKeyFrame(stateTimer);
@@ -110,6 +114,7 @@ public class Runner extends Sprite {
                 break;
         }
 
+        // flip direction of frames when moving on the opposite direction
     if((b2body.getLinearVelocity().x < 0 || !RunningRight) && !region.isFlipX()){
         region.flip(true, false);
         RunningRight = false;
@@ -122,6 +127,8 @@ public class Runner extends Sprite {
     PreviousState = CurrentState;
     return region;
     }
+
+    // Get current movement state of the runner
     public State getState(){
         if(b2body.getLinearVelocity().y > 0)
             return State.JUMPING;
@@ -136,12 +143,14 @@ public class Runner extends Sprite {
 
     public  void defineRunner(){
         BodyDef bdef = new BodyDef();
+
+        // Spawn positions for all 3 Levels
         if(Level1){
-            bdef.position.set(1, 10); // test (60,10)
+            bdef.position.set(1, 10);       // (60,10) Spawn at the end for debugging purpose
         } else if (Level2) {
-            bdef.position.set(1,1);    // test (60,1)
+            bdef.position.set(1,1);         // (60,1) Spawn at the end for debugging purpose
         } else if (Level3) {
-            bdef.position.set(89, 9);   //(88, 6)
+            bdef.position.set(89, 9);       // (88, 6) Spawn at the end for debugging purpose
         }
 
         bdef.type = BodyDef.BodyType.DynamicBody;
@@ -162,6 +171,7 @@ public class Runner extends Sprite {
         fdef.isSensor = true;
 
         b2body.createFixture(fdef).setUserData("head");
+
 
         // Create a new fixture for the foot sensor
         PolygonShape footSensor = new PolygonShape();

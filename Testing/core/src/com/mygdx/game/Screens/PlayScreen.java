@@ -29,7 +29,7 @@ import com.mygdx.game.Tools.WorldContactListener;
 
 import java.util.LinkedList;
 
-import static com.mygdx.game.RunnerGame.canJump;
+import static com.mygdx.game.RunnerGame.*;
 
 public class PlayScreen implements Screen {
     private RunnerGame game;
@@ -50,6 +50,7 @@ public class PlayScreen implements Screen {
     private Music music;
 
     public PlayScreen(RunnerGame game, ScreenManager screenManager) {
+
         atlas = new TextureAtlas("Tilemaps/All.pack");
         this.game = game;
         this.screenManager = screenManager;
@@ -71,7 +72,7 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0, -10), true);
         b2dr = new Box2DDebugRenderer();
 
-
+        //create world
         new B2WorldCreator(world, map, courseWorks, this);
 
         //Create the player
@@ -80,7 +81,6 @@ public class PlayScreen implements Screen {
         world.setContactListener(new WorldContactListener());
 
         //Play in loop the main theme song of the game
-
         music = RunnerGame.manager.get("Audio/music/Runner_Game_Music.mp3");
         music.setLooping(true);
         music.play();
@@ -90,11 +90,13 @@ public class PlayScreen implements Screen {
         return atlas;
     }
 
+
+    // handle user control input
     public boolean handleInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            if (canJump) {
+            if (canJump > 0) {
                 player.b2body.applyLinearImpulse(new Vector2(0, RunnerGame.VERTICAL_SPEED), player.b2body.getWorldCenter(), true);
-                canJump = false;
+                canJump--;
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
@@ -112,39 +114,68 @@ public class PlayScreen implements Screen {
         world.step(1 / 60f, 6, 2);
         player.update(dt);
         hud.update(dt);
+
+        // camera moving with the runner
         gamecam.position.x = player.b2body.getPosition().x;
+
+        // initialize camera y-axis
         if(RunnerGame.Level1) {
             gamecam.position.y = 12;
         }
 
+        // Level 1 Power Up
+        if(RunnerGame.Level1 && player.b2body.getPosition().x > 34 ){
+            DoubleJump = true;
+            VERTICAL_SPEED = 4.5f;
+        }
+
+        // Level 2 Transferring from level 1 and Resetting Power Up
         if((RunnerGame.Level1 && player.b2body.getPosition().x > 62.7 && player.b2body.getPosition().x < 64) && player.b2body.getPosition().y < 8 ){
             RunnerGame.Level1 = false;
             RunnerGame.Level2 = true;
             RunnerGame.Level3 = false;
+            RunnerGame.DoubleJump = false;
+            VERTICAL_SPEED = 5f;
             player = new Runner(world, this);
             gamecam.position.y = 4;
             RunnerGame.Score = Hud.score;
             RunnerGame.WorldTimer = Hud.worldTimer;
             hud = new Hud(game.batch);
-
         }
+
+        // Level 2 Power Up
+        if(RunnerGame.Level2 && player.b2body.getPosition().x > 20.7 ){
+            VERTICAL_SPEED = 6f;
+        }
+
+        // Level 3 Transferring from level 2 and Resetting Power Up
         if((RunnerGame.Level2 && player.b2body.getPosition().x > 65 ) && player.b2body.getPosition().y < 0 ){
             RunnerGame.Level1 = false;
             RunnerGame.Level2 = false;
             RunnerGame.Level3 = true;
+            VERTICAL_SPEED = 5f;
             player = new Runner(world, this);
             gamecam.position.y = player.b2body.getPosition().y;
             RunnerGame.Score = Hud.score;
             RunnerGame.WorldTimer = Hud.worldTimer;
             hud = new Hud(game.batch);
         }
+
+        // Level 3 includes two levels of field so the camera will follow the player at both x and y axis
         if(RunnerGame.Level3){
             gamecam.position.y = player.b2body.getPosition().y;
         }
 
+        // Level 3 Power Up
+        if (Level3 && player.b2body.getPosition().x < 109.4 && player.b2body.getPosition().y < 5 && player.b2body.getPosition().y > 4){
+            HORIZONTAL_SPEED = 5f;
+        }
+
+        // Win and Lose Conditions
+        // If timer less than 0 late submission reduction applied
         if (RunnerGame.Level3 && player.b2body.getPosition().x < 85 ) {
             if (hud.worldTimer > 0) {
-                if (hud.score > 500) {
+                if (hud.score >= 500) {
                     music.stop();
                     screenManager.putScreen(RunnerGame.Screen_Type.WIN);
                 } else {

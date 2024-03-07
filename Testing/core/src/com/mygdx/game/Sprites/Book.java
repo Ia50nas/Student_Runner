@@ -15,10 +15,10 @@ public class Book extends InteractiveTileObject {
         setCategoryFilter(RunnerGame.OBSTACLE_BIT);
     }
 
+    // When Player hits this object edit the score and play sound
     @Override
     public void onHeadHit() {
         Gdx.app.log("Book", "Collision");
-        Hud.addScore(-5);
         RunnerGame.manager.get("Audio/sounds/Books.mp3", Sound.class).play(75);
 
     }

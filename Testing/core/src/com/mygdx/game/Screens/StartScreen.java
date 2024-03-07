@@ -26,10 +26,14 @@ public class StartScreen implements Screen {
         this.screenManager = screenManager;
         this.stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
+
+        // background and sound for start screen of the game
         Bg = new TextureRegion(new Texture("Art/Main_Screen.png"));
         initButtons();
     }
 
+    // Initialize all buttons that are on the screen
+    // Create the skin = image and its use
     public void initButtons() {
         Texture startTexture = new Texture(Gdx.files.internal("Buttons/Start.png"));
         Texture infoTexture = new Texture(Gdx.files.internal("Buttons/Info.png"));

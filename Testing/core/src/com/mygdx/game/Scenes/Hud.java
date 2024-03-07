@@ -33,10 +33,11 @@ public class Hud implements Disposable {
 
     public  Hud(SpriteBatch sb){
         timeCount = 0;
+
+        // initialize the variables and update in each stage
         if(Level1){
             score = 0;
             worldTimer = 300;
-
         } else if (Level2) {
             score = Score;
             worldTimer = WorldTimer;
@@ -50,13 +51,19 @@ public class Hud implements Disposable {
         viewport = new FitViewport(RunnerGame.V_WIDTH ,RunnerGame.V_HEIGHT,new OrthographicCamera());
         stage = new Stage(viewport, sb);
 
+
+        // create a table which include the hud and all the information
         Table table = new Table();
         table.top();
         table.setFillParent(true);
 
+
+        // create all labels
         countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         timeLabel = new Label("Timer", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+
+        // Set the values based on the map
         if(Level1){
             levelLabel = new Label("Level 1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
             worldLabel = new Label("Leipzig Town", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -84,6 +91,7 @@ public class Hud implements Disposable {
 
     }
 
+    // update the timer on the hud
     public  void update(float dt){
         timeCount += dt;
         if(timeCount >= 1){
@@ -93,6 +101,7 @@ public class Hud implements Disposable {
         }
     }
 
+    // increase the score of the player and show new score
     public static void addScore(int value){
         score+= value;
         scoreLabel.setText(String.format("%06d", score));

@@ -15,6 +15,7 @@ public class Urchin extends InteractiveTileObject {
         setCategoryFilter(RunnerGame.OBSTACLE_BIT);
     }
 
+    // When Player hits this object edit the score and play sound
     @Override
     public void onHeadHit() {
         Gdx.app.log("Urchin", "Collision");

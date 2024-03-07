@@ -25,12 +25,16 @@ public class MenuScreen implements Screen {
         this.game = game;
         this.screenManager = screenManager;
         this.stage = new Stage(new ScreenViewport());
+
+        // background and sound for Menu
         Gdx.input.setInputProcessor(stage);
         Bg = new TextureRegion(new Texture("Art/Menu_Screen.png"));
 
         initButtons();
     }
 
+    // Initialize all buttons that are on the screen
+    // Create the skin = image and its use
     public void initButtons() {
         Texture restartTexture = new Texture(Gdx.files.internal("Buttons/Restart.png"));
         Texture infoTexture = new Texture(Gdx.files.internal("Buttons/Info.png"));

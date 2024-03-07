@@ -39,12 +39,17 @@ public class LoseScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);           //clear screen
 
         game.batch.begin();
+
+        // background and sound for Losing the game
         game.batch.draw(Bg, 0, 0, Bg.getRegionWidth() * 1.6f, Bg.getRegionHeight() * 0.8f);
         game.batch.end();
 
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }
+
+    // Initialize all buttons that are on the screen
+    // Create the skin = image and its use
     public void initButtons() {
         Texture ScreenBTexture = new Texture(Gdx.files.internal("Buttons/Screen-Button.png"));
 

@@ -32,6 +32,7 @@ public final class ScreenManager {
             previousScreen = currentScreen;
         }
 
+        // Detect and create when a new screen has to be projected
         switch (screenType) {
             case START:
                 currentScreen = new StartScreen(game,this);

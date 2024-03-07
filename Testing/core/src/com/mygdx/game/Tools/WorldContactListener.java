@@ -3,10 +3,14 @@ package com.mygdx.game.Tools;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.RunnerGame;
-import com.mygdx.game.Screens.PlayScreen;
+import com.mygdx.game.Screens.*;
 import com.mygdx.game.Sprites.InteractiveTileObject;
 
+import static com.mygdx.game.RunnerGame.DoubleJump;
+
 public class WorldContactListener implements ContactListener {
+
+    // Use a head and foot sensor to detect when the players hear or foot has hit any of the other objects
     @Override
     public void beginContact(Contact contact) {
         Fixture fixA = contact.getFixtureA();
@@ -18,7 +22,11 @@ public class WorldContactListener implements ContactListener {
 
             if(object.getUserData() != null && InteractiveTileObject.class.isAssignableFrom(object.getUserData().getClass())){
                 ((InteractiveTileObject) object.getUserData()).onHeadHit();
-                RunnerGame.canJump = true;
+                if(DoubleJump ){
+                    RunnerGame.canJump = 2; // if double jump enabled give two jumps to the player after interaction with object
+                } else{
+                    RunnerGame.canJump = 1; // else only one jump
+                }
             }
         }
     }

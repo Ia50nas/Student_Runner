@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.RunnerGame;
+import com.mygdx.game.Scenes.Hud;
 import com.mygdx.game.Tools.ScreenManager;
 
 public class WinScreen implements Screen {
@@ -26,8 +27,15 @@ public class WinScreen implements Screen {
         this.screenManager = screenManager;
         this.stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-        Bg = new TextureRegion(new Texture("Art/Win_Screen.png"));
 
+        // background and sound for winning the game
+        if(Hud.score >= 700) {
+            Bg = new TextureRegion(new Texture("Art/Win_Screen_A.png"));
+        } else if (Hud.score < 700 && Hud.score >= 600 ) {
+            Bg = new TextureRegion(new Texture("Art/Win_Screen_B.png"));
+        } else{
+            Bg = new TextureRegion(new Texture("Art/Win_Screen_C.png"));
+        }
         RunnerGame.manager.get("Audio/sounds/Win_Sound.mp3", Sound.class).play();
 
         initButtons();
@@ -35,8 +43,9 @@ public class WinScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        // Clear the screen
         Gdx.gl.glClearColor(0,0,0,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);           //clear screen
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin();
         game.batch.draw(Bg, 0, 0, Bg.getRegionWidth() * 1.6f, Bg.getRegionHeight() * 0.8f);
@@ -45,6 +54,9 @@ public class WinScreen implements Screen {
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }
+
+    // Initialize all buttons that are on the screen
+    // Create the skin = image and its use
     public void initButtons() {
         Texture crossTexture = new Texture(Gdx.files.internal("Buttons/X-cross.png"));
 

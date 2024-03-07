@@ -52,6 +52,7 @@ public class CourseWork extends InteractiveTileObject{
         batch.end();
     }
 
+    // When Player hits this object edit the score and play sound
     @Override
     public void onHeadHit() {
         Gdx.app.log("Coursework", "Collision");

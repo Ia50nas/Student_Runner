@@ -16,14 +16,17 @@ public class B2WorldCreator {
 
     private final PlayScreen playScreen;
     public B2WorldCreator(World world, TiledMap map, LinkedList<CourseWork> courseworks, PlayScreen playScreen) {
-        //create body
+        //create body definition for objects
         BodyDef bdef = new BodyDef();
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
         Body body;
         this.playScreen = playScreen;
 
-        //create cone body
+        // By using TILED we have layers to the bodies we create. Background layers are just visuals that are loaded at once but different body layers have to be created.
+        // Layer count starts from 0 0 - 9 are just visuals and backgrounds
+
+        //  create cone body
         for (MapObject object : map.getLayers().get(10).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 

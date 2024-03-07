@@ -23,25 +23,27 @@ public class RunnerGame extends Game {
 	public static boolean Level1 = true;
 	public static boolean Level2 = false;
 	public static boolean Level3 = false;
-	public static boolean canJump = true;
+	public static boolean DoubleJump = false;
+	public static int canJump = 1;
 	public static int Score = 0;
 	public static int WorldTimer = 0;
 	public enum Screen_Type {
 		START, MENU, RESUME, PLAY, INFO, WIN, LOSE, EXIT
 	}
+
 	public static float HORIZONTAL_SPEED = 0.5f;
 	public static float VERTICAL_SPEED = 5f;
-	public enum Power_Up {
-		None, Speed, DoubleJUmp, BigJump
-	}
 
 	public static AssetManager manager;
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		manager = new AssetManager();
+
+		//Create new Screen manager to handle screens
 		ScreenManager screenManager = new ScreenManager(this);
 
+		//Load all audio files that will be used in the game
 		manager.load("Audio/music/Runner_Game_Music.mp3" , Music.class);
 		manager.load("Audio/sounds/Coursework.mp3" , Sound.class);
 		manager.load("Audio/sounds/Fire.mp3" , Sound.class);
