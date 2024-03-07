@@ -81,7 +81,7 @@ public class PlayScreen implements Screen {
         world.setContactListener(new WorldContactListener());
 
         //Play in loop the main theme song of the game
-        music = RunnerGame.manager.get("Audio/music/Runner_Game_Music.mp3");
+        music = RunnerGame.manager.get("Audio/music/runner_game_music.mp3");
         music.setLooping(true);
         music.play();
     }
@@ -138,7 +138,7 @@ public class PlayScreen implements Screen {
         }
 
         // Level 2 Transferring from level 1 and Resetting Power Up
-        if((RunnerGame.Level1 && player.b2body.getPosition().x > 62.7 && player.b2body.getPosition().x < 64) && player.b2body.getPosition().y < 8 ){
+        if((RunnerGame.Level1 && player.b2body.getPosition().x > 62.7) && player.b2body.getPosition().y < 8 ){
             RunnerGame.Level1 = false;
             RunnerGame.Level2 = true;
             RunnerGame.Level3 = false;

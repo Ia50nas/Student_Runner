@@ -44,7 +44,7 @@ public class RunnerGame extends Game {
 		ScreenManager screenManager = new ScreenManager(this);
 
 		//Load all audio files that will be used in the game
-		manager.load("Audio/music/Runner_Game_Music.mp3" , Music.class);
+		manager.load("Audio/music/runner_game_music.mp3" , Music.class);
 		manager.load("Audio/sounds/Coursework.mp3" , Sound.class);
 		manager.load("Audio/sounds/Fire.mp3" , Sound.class);
 		manager.load("Audio/sounds/Game_hit.mp3" , Sound.class);
