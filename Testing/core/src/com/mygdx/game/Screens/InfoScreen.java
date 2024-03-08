@@ -25,7 +25,6 @@ public class InfoScreen implements Screen {
         this.screenManager = screenManager;
         this.stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-        Bg = new TextureRegion(new Texture("Art/Info_Screen.png"));
 
         initButtons();
     }
